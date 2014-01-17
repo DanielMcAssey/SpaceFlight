@@ -1,0 +1,184 @@
+
+material _missing_material_
+{
+    receive_shadows off
+    technique
+    {
+        pass
+        {
+            ambient 0.0 0.0 0.0 1.0
+            diffuse 0.0 0.0 0.0 1.0
+            specular 0.0 0.0 0.0 0.0 0.0
+            emissive 0.3 0.3 0.3 1.0
+        }
+    }
+}
+
+// plane.003 genrated by blender2ogre 0.6.0
+
+material plane.003 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass plane.003
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 0.0
+            specular 0.0 0.0 0.0 0.0 1.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture F-117_Nighthawk_P01.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}
+// pilot.003 genrated by blender2ogre 0.6.0
+
+material pilot.003 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass pilot.003
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.7529410123825073 0.7529410123825073 0.7529410123825073 1.0 1.0
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture Pilot_usa.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op modulate
+            }
+        }
+    }
+}
+// seat.003 genrated by blender2ogre 0.6.0
+
+material seat.003 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass seat.003
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            specular 0.7529410123825073 0.7529410123825073 0.7529410123825073 1.0 1.0
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture Eject_Seat.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op modulate
+            }
+        }
+    }
+}
+// glass.003 genrated by blender2ogre 0.6.0
+
+material glass.003 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass glass.003
+        {
+            ambient 1.0 1.0 1.0 0.0
+            diffuse 0.800000011920929 0.800000011920929 0.800000011920929 0.0
+            specular 0.7529410123825073 0.7529410123825073 0.7529410123825073 0.0 1.0
+            emissive 0.0 0.0 0.0 0.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+            texture_unit 
+            {
+                texture Glass_Cockpit.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op alpha_blend
+            }
+        }
+    }
+}

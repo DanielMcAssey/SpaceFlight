@@ -4,7 +4,6 @@
 #endif
 
 #include "stdafx.h"
-#include "GameApp.h"
 
 #ifdef __cplusplus
 extern "C"{
@@ -16,11 +15,10 @@ extern "C"{
     int main(int argc, char *argv[])
 #endif
     {
-		GameApp tapp;
+		App tapp;
 
         try
 		{
-			//Make a call to Start App to Start our game loop.
 			tapp.startApp();
         } 
 		catch(Ogre::Exception& texception)

@@ -13,6 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Camera">
+      <UniqueIdentifier>{a318224f-6b0f-4125-908f-845b61ca43fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Camera">
+      <UniqueIdentifier>{4d76e75c-34dd-406b-bafe-e0925893b15c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{0a6aa4c6-e599-488f-a41d-76bb8d61b42e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{09d7506e-3dfb-4ce6-bfd8-95620bf9305f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Extra">
+      <UniqueIdentifier>{44cfb692-c462-4b15-9d9e-b7d06f1bd547}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Extra">
+      <UniqueIdentifier>{503c968e-11da-4caf-98ad-e18311deb8bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screen">
+      <UniqueIdentifier>{681d4dc3-eb3f-4807-80f9-be96b109bd40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screen">
+      <UniqueIdentifier>{33a9c165-3e56-440e-8d96-2b82ed62a8a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screen\DEFAULT_SCREENS">
+      <UniqueIdentifier>{0e2ca9d0-ab24-430e-b5d5-ed0de76c2912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screen\DEFAULT_SCREENS">
+      <UniqueIdentifier>{4db60b44-e14f-477b-afe3-40b8cefda320}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities">
+      <UniqueIdentifier>{192bc04a-ff99-4411-90e4-3d3cf694214d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{71ef874f-33e4-4edf-809e-2f61016afdbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -24,11 +60,50 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="App.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseCamera.h">
+      <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="TPCamera.h">
+      <Filter>Header Files\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenManager.h">
+      <Filter>Header Files\Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseScreen.h">
+      <Filter>Header Files\Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenListener.h">
+      <Filter>Header Files\Screen</Filter>
+    </ClInclude>
+    <ClInclude Include="Structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScreen.h">
+      <Filter>Header Files\Screen\DEFAULT_SCREENS</Filter>
+    </ClInclude>
+    <ClInclude Include="VehicleSelect.h">
+      <Filter>Header Files\Screen\DEFAULT_SCREENS</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScreen.h">
+      <Filter>Header Files\Screen\DEFAULT_SCREENS</Filter>
+    </ClInclude>
+    <ClInclude Include="MovableText.h">
+      <Filter>Header Files\Extra</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -38,11 +113,41 @@
     <ClCompile Include="SpaceFlight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="App.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCamera.cpp">
+      <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="TPCamera.cpp">
+      <Filter>Source Files\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Vehicle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenManager.cpp">
+      <Filter>Source Files\Screen</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScreen.cpp">
+      <Filter>Source Files\Screen\DEFAULT_SCREENS</Filter>
+    </ClCompile>
+    <ClCompile Include="VehicleSelect.cpp">
+      <Filter>Source Files\Screen\DEFAULT_SCREENS</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScreen.cpp">
+      <Filter>Source Files\Screen\DEFAULT_SCREENS</Filter>
+    </ClCompile>
+    <ClCompile Include="MovableText.cpp">
+      <Filter>Source Files\Extra</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
