@@ -22,9 +22,6 @@
     <Filter Include="Header Files\Input">
       <UniqueIdentifier>{0a6aa4c6-e599-488f-a41d-76bb8d61b42e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Input">
-      <UniqueIdentifier>{09d7506e-3dfb-4ce6-bfd8-95620bf9305f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Extra">
       <UniqueIdentifier>{44cfb692-c462-4b15-9d9e-b7d06f1bd547}</UniqueIdentifier>
     </Filter>
@@ -48,6 +45,9 @@
     </Filter>
     <Filter Include="Source Files\Entities">
       <UniqueIdentifier>{71ef874f-33e4-4edf-809e-2f61016afdbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{09d7506e-3dfb-4ce6-bfd8-95620bf9305f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -99,11 +99,17 @@
     <ClInclude Include="VehicleSelect.h">
       <Filter>Header Files\Screen\DEFAULT_SCREENS</Filter>
     </ClInclude>
-    <ClInclude Include="GameScreen.h">
-      <Filter>Header Files\Screen\DEFAULT_SCREENS</Filter>
-    </ClInclude>
     <ClInclude Include="MovableText.h">
       <Filter>Header Files\Extra</Filter>
+    </ClInclude>
+    <ClInclude Include="DogFightingScreen.h">
+      <Filter>Header Files\Screen\DEFAULT_SCREENS</Filter>
+    </ClInclude>
+    <ClInclude Include="TargetPracticeScreen.h">
+      <Filter>Header Files\Screen\DEFAULT_SCREENS</Filter>
+    </ClInclude>
+    <ClInclude Include="RaceScreen.h">
+      <Filter>Header Files\Screen\DEFAULT_SCREENS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,11 +149,17 @@
     <ClCompile Include="VehicleSelect.cpp">
       <Filter>Source Files\Screen\DEFAULT_SCREENS</Filter>
     </ClCompile>
-    <ClCompile Include="GameScreen.cpp">
-      <Filter>Source Files\Screen\DEFAULT_SCREENS</Filter>
-    </ClCompile>
     <ClCompile Include="MovableText.cpp">
       <Filter>Source Files\Extra</Filter>
+    </ClCompile>
+    <ClCompile Include="DogFightingScreen.cpp">
+      <Filter>Source Files\Screen\DEFAULT_SCREENS</Filter>
+    </ClCompile>
+    <ClCompile Include="TargetPracticeScreen.cpp">
+      <Filter>Source Files\Screen\DEFAULT_SCREENS</Filter>
+    </ClCompile>
+    <ClCompile Include="RaceScreen.cpp">
+      <Filter>Source Files\Screen\DEFAULT_SCREENS</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -201,7 +201,7 @@ void VehicleSelect::Update(Ogre::Real elapsedTime)
 	}
 
 	if(this->mWindow->playersReady == this->mWindow->totalPlayers)
-		this->ChangeScreen(this->FindScreen("GameScreen"));
+		this->ChangeScreen(this->FindScreen("DogFightingScreen"));
 
 	for(int i = 0; i < 4; i++)
 	{

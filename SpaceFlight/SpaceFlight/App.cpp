@@ -76,7 +76,9 @@ bool App::internAppSetup(void)
 	this->_obj_screenmanager = new ScreenManager(&this->_obj_window);
 	MenuScreen::CreateScreen(this->_obj_screenmanager, "MenuScreen");
 	VehicleSelect::CreateScreen(this->_obj_screenmanager, "VehicleSelect");
-	GameScreen::CreateScreen(this->_obj_screenmanager, "GameScreen");
+	DogFightingScreen::CreateScreen(this->_obj_screenmanager, "DogFightingScreen");
+	RaceScreen::CreateScreen(this->_obj_screenmanager, "RaceScreen");
+	TargetPracticeScreen::CreateScreen(this->_obj_screenmanager, "TargetPracticeScreen");
 	this->_obj_screenmanager->LoadScreen(this->_obj_screenmanager->FindScreen("MenuScreen"));
 
 	return true;

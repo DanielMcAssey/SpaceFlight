@@ -38,7 +38,9 @@
 #include "BaseScreen.h"
 #include "MenuScreen.h"
 #include "VehicleSelect.h"
-#include "GameScreen.h"
+#include "DogFightingScreen.h"
+#include "RaceScreen.h"
+#include "TargetPracticeScreen.h"
 #include "GameObject.h"
 
 

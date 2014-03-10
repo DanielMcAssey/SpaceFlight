@@ -5,9 +5,7 @@
 InputManager::InputManager(void)
 {
 	for(int i = 0; i < 4; i++)
-	{
 		this->mGamepads[i].Disconnected = true;
-	}
 
 	this->mGamepadError.Disconnected = true;
 }
