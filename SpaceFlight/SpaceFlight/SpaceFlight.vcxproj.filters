@@ -49,6 +49,12 @@
     <Filter Include="Source Files\Input">
       <UniqueIdentifier>{09d7506e-3dfb-4ce6-bfd8-95620bf9305f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Level">
+      <UniqueIdentifier>{4a054d3f-4c6a-46bd-8410-754c3ab12368}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level">
+      <UniqueIdentifier>{427a6306-7113-4736-8d5b-34a2230b5d6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -111,6 +117,9 @@
     <ClInclude Include="RaceScreen.h">
       <Filter>Header Files\Screen\DEFAULT_SCREENS</Filter>
     </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -160,6 +169,9 @@
     </ClCompile>
     <ClCompile Include="RaceScreen.cpp">
       <Filter>Source Files\Screen\DEFAULT_SCREENS</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
