@@ -10,7 +10,7 @@ App::App(void)
 	this->_obj_window._obj_rdr_window = nullptr;
 	this->_obj_window._fname_cfg_res = Ogre::StringUtil::BLANK;
 	this->_obj_window._fname_cfg_plugins = Ogre::StringUtil::BLANK;
-	this->_obj_window._prop_app_windowname = "SpaceFlight - Development Revision: 89";
+	this->_obj_window._prop_app_windowname = "SpaceFlight - Version: 0.1-dev";
 	this->_obj_window._obj_log = nullptr;
 	this->_obj_window._obj_timer = nullptr;
 }

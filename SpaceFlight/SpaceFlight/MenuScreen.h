@@ -26,7 +26,9 @@ protected:
 
 	Ogre::MovableText* startupMsg;
 
+	bool startPressed;
 	int menuIndex;
+	int maxMenuItems;
 	std::vector<Ogre::MovableText*> textStorage;
 };
 

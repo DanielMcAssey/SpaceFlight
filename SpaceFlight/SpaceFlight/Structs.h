@@ -13,14 +13,15 @@ typedef struct WindowData
 	Ogre::String		_fname_cfg_plugins;				//Stores the File Name of our Plugin Configurations
 	Ogre::String		_prop_app_windowname;			//Property to store the Application Window Name
 	Ogre::Timer*		_obj_timer;						//Timer for frame updates.
-	Ogre::Viewport*		_obj_viewport[4];					//Viewport
+	Ogre::Viewport*		_obj_viewport[4];				//Viewport
 	Ogre::Log*			_obj_log;						//Log
 	InputManager*		_obj_input;						//XInput Controller
 
 	int controllingGamepadID;							//Controlling Gamepad ID
 	bool controllingGamepadSet;							//If controlling gamepad has been set
-	bool activePlayers[4];
-	bool playerReady[4];
-	int totalPlayers;
-	int playersReady;
+	bool activePlayers[4];								//Bool array of all players active state
+	bool playerReady[4];								//Bool array of all players ready state
+	int totalPlayers;									//Total players in game
+	int playersReady;									//Count of players ready
+	int gameMode;										//Gamemode selected
 };

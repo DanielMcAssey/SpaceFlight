@@ -13,6 +13,7 @@ VehicleSelect::VehicleSelect(void)
 
 VehicleSelect::~VehicleSelect(void)
 {
+
 }
 
 void VehicleSelect::Load()
@@ -187,6 +188,23 @@ void VehicleSelect::Load()
 
 void VehicleSelect::Unload()
 {
+	for(int i = 0; i < 4; i++)
+	{
+		//if(this->mActiveCamera[i] != nullptr)
+		//	this->mSceneManager->destroyCamera(this->mActiveCamera[i]);
+
+		if(this->userInstructions[i] != nullptr)
+			this->userInstructions[i] = nullptr;
+		if(this->vehicleDisplayNode[i] != nullptr)
+			this->vehicleDisplayNode[i] = nullptr;
+		if(this->cameraNode[i] != nullptr)
+			this->cameraNode[i] = nullptr;
+		if(this->overlayNode[i] != nullptr)
+			this->overlayNode[i] = nullptr;
+	}
+
+	if(this->mSceneManager)
+		this->mWindow->_obj_root->destroySceneManager(this->mSceneManager);
 
 }
 
@@ -201,7 +219,20 @@ void VehicleSelect::Update(Ogre::Real elapsedTime)
 	}
 
 	if(this->mWindow->playersReady == this->mWindow->totalPlayers)
-		this->ChangeScreen(this->FindScreen("DogFightingScreen"));
+	{
+		switch(this->mWindow->gameMode)
+		{
+		case 0: //Practice
+			this->ChangeScreen(this->FindScreen("TargetPracticeScreen"));
+			break;
+		case 1: //Race
+			this->ChangeScreen(this->FindScreen("RaceScreen"));
+			break;
+		case 2: //Dog Fight
+			this->ChangeScreen(this->FindScreen("DogFightingScreen"));
+			break;
+		}
+	}
 
 	for(int i = 0; i < 4; i++)
 	{
@@ -264,9 +295,11 @@ void VehicleSelect::Update(Ogre::Real elapsedTime)
 
 				}
 
-				this->vehicleDisplayNode[i]->yaw(Ogre::Degree(-this->mCamRotate[i] * -this->mWindow->_obj_input->GetState(i).RStick.X  * this->mFrameEvent.timeSinceLastFrame * this->mCamRotSpeed[i]), Ogre::Node::TS_WORLD);
-				this->vehicleDisplayNode[i]->pitch(Ogre::Degree(-this->mCamRotate[i] * this->mWindow->_obj_input->GetState(i).RStick.Y  * this->mFrameEvent.timeSinceLastFrame * this->mCamRotSpeed[i]), Ogre::Node::TS_LOCAL);
-
+				if(this->vehicleDisplayNode[i] != nullptr)
+				{
+					this->vehicleDisplayNode[i]->yaw(Ogre::Degree(-this->mCamRotate[i] * -this->mWindow->_obj_input->GetState(i).RStick.X  * this->mFrameEvent.timeSinceLastFrame * this->mCamRotSpeed[i]), Ogre::Node::TS_WORLD);
+					this->vehicleDisplayNode[i]->pitch(Ogre::Degree(-this->mCamRotate[i] * this->mWindow->_obj_input->GetState(i).RStick.Y  * this->mFrameEvent.timeSinceLastFrame * this->mCamRotSpeed[i]), Ogre::Node::TS_LOCAL);
+				}
 				this->mCamDirection[i] = Ogre::Vector3::ZERO;
 		}
 	}

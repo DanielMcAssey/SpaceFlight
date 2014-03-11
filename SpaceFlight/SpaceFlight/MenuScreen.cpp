@@ -6,8 +6,6 @@ using namespace Ogre;
 
 MenuScreen::MenuScreen(void)
 {
-	this->mShutdown = false;
-	this->mFrameEvent = Ogre::FrameEvent();
 }
 
 
@@ -17,6 +15,11 @@ MenuScreen::~MenuScreen(void)
 
 void MenuScreen::Load()
 {
+	this->mShutdown = false;
+	this->mFrameEvent = Ogre::FrameEvent();
+	this->menuIndex = 0;
+	this->maxMenuItems = 3;
+	this->startPressed = false;
 	this->mSceneManager = this->mWindow->_obj_root->createSceneManager(ST_GENERIC, "MenuRoot");
 
 	this->mWindow->_obj_rdr_window->removeAllViewports();
@@ -85,10 +88,76 @@ void MenuScreen::Update(Ogre::Real elapsedTime)
 		if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).ButtonsSingle.B)
 			this->mShutdown = true;
 
-		if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).ButtonsSingle.Start)
-			this->startupMsg->setCaption("Press A to Continue");
+		if(this->startPressed) //Menu Screen
+		{
+			if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).DPadSingle.Down)
+			{
+				if(this->menuIndex + 1 >= this->maxMenuItems)
+				{
+					this->menuIndex = 0;
+				}
+				else
+				{
+					this->menuIndex += 1;
+				}
 
-		if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).ButtonsSingle.A)
-			this->ChangeScreen(this->FindScreen("VehicleSelect"));
+			}
+			else if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).DPadSingle.Up)
+			{
+				if(this->menuIndex - 1 < 0)
+				{
+					this->menuIndex = this->maxMenuItems - 1;
+				}
+				else
+				{
+					this->menuIndex -= 1;
+				}
+			}
+
+			if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).DPadSingle.Up || this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).DPadSingle.Down)
+			{
+				switch(this->menuIndex)
+				{
+				case 0: //Practice
+					this->startupMsg->setCaption("Practice Mode");
+					break;
+				case 1: //Race
+					this->startupMsg->setCaption("Race Mode");
+					break;
+				case 2: //Dog Fight
+					this->startupMsg->setCaption("VS Mode");
+					break;
+				}
+			}
+
+			if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).ButtonsSingle.A)
+			{
+				switch(this->menuIndex)
+				{
+				case 0: //Practice
+					this->mWindow->gameMode = this->menuIndex;
+					this->ChangeScreen(this->FindScreen("VehicleSelect"));
+					break;
+				case 1: //Race
+					this->mWindow->gameMode = this->menuIndex;
+					this->ChangeScreen(this->FindScreen("VehicleSelect"));
+					break;
+				case 2: //Dog Fight
+					this->mWindow->gameMode = this->menuIndex;
+					this->ChangeScreen(this->FindScreen("VehicleSelect"));
+					break;
+				}
+			}
+		}
+		else //Press Start Screen
+		{
+			if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).ButtonsSingle.Start)
+			{
+				this->startupMsg->setCaption("Game Modes");
+				this->startupMsg->setCharacterHeight(2.0f);
+				this->startupMsg->setTextAlignment(MovableText::H_CENTER, MovableText::V_ABOVE);
+				this->startPressed = true;
+			}
+		}
 	}
 }
