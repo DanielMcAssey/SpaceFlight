@@ -96,6 +96,7 @@
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="MenuScreen.h" />
     <ClInclude Include="MovableText.h" />
+    <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="RaceScreen.h" />
     <ClInclude Include="ScreenListener.h" />
     <ClInclude Include="ScreenManager.h" />
@@ -105,7 +106,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TPCamera.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="Vehicle.h" />
+    <ClInclude Include="VehicleObject.h" />
     <ClInclude Include="VehicleSelect.h" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +118,7 @@
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="MovableText.cpp" />
+    <ClCompile Include="PlayerObject.cpp" />
     <ClCompile Include="RaceScreen.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="SpaceFlight.cpp" />
@@ -127,7 +129,7 @@
     <ClCompile Include="TargetPracticeScreen.cpp" />
     <ClCompile Include="TPCamera.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="Vehicle.cpp" />
+    <ClCompile Include="VehicleObject.cpp" />
     <ClCompile Include="VehicleSelect.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

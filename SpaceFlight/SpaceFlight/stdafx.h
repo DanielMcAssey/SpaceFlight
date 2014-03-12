@@ -42,6 +42,11 @@
 #include "RaceScreen.h"
 #include "TargetPracticeScreen.h"
 #include "GameObject.h"
+#include "VehicleObject.h"
+#include "PlayerObject.h"
+#include "LevelManager.h"
 
+using namespace std;
+using namespace Ogre;
 
 // TODO: reference additional headers your program requires here

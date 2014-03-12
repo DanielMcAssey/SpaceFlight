@@ -72,6 +72,7 @@ bool App::internAppSetup(void)
 		this->_obj_window.playerReady[i] = false;
 	}
 
+	this->_obj_window.maxViewDistance = 1000.0f;
 	//Create the screen manager
 	this->_obj_screenmanager = new ScreenManager(&this->_obj_window);
 	MenuScreen::CreateScreen(this->_obj_screenmanager, "MenuScreen");

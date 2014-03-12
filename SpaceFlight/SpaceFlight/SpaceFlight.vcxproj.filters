@@ -81,9 +81,6 @@
     <ClInclude Include="GameObject.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Vehicle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EntityManager.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
@@ -120,6 +117,12 @@
     <ClInclude Include="LevelManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerObject.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="VehicleObject.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -142,9 +145,6 @@
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="Vehicle.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EntityManager.cpp">
       <Filter>Source Files\Entities</Filter>
@@ -172,6 +172,12 @@
     </ClCompile>
     <ClCompile Include="LevelManager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerObject.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="VehicleObject.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

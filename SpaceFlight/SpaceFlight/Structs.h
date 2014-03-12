@@ -24,4 +24,5 @@ typedef struct WindowData
 	int totalPlayers;									//Total players in game
 	int playersReady;									//Count of players ready
 	int gameMode;										//Gamemode selected
+	Ogre::Real maxViewDistance;						//The maximum view distance
 };
