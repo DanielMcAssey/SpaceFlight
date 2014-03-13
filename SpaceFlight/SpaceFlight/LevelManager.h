@@ -11,6 +11,7 @@ public:
 	void Update(Ogre::Real elapsedTime);
 	void ResetPlayerCameras();
 	PlayerObject* GetPlayer(int id);
+	Ogre::SceneNode* GetLevelNode();
 protected:
 	WindowData* mWindow;
 	Ogre::SceneManager* mSceneManager;

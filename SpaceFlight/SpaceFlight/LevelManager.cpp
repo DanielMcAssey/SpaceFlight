@@ -76,3 +76,9 @@ PlayerObject* LevelManager::GetPlayer(int id)
 
 	return nullptr;
 }
+
+Ogre::SceneNode* LevelManager::GetLevelNode()
+{
+	if(this->mNode != nullptr)
+		return this->mNode;
+}

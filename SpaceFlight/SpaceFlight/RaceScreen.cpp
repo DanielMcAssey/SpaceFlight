@@ -12,6 +12,7 @@ RaceScreen::~RaceScreen(void)
 	this->Unload();
 }
 
+
 void RaceScreen::Load()
 {
 	this->mSceneManager = this->mWindow->_obj_root->createSceneManager(ST_GENERIC, "RaceManager");
@@ -22,6 +23,7 @@ void RaceScreen::Load()
 	if(this->mLevelManager != nullptr)
 	{
 		this->mLevelManager->LoadLevel(this->IsMultiplayer, this->mGameNode);
+		this->mLevelNode = this->mLevelManager->GetLevelNode();
 	}
 	else
 	{

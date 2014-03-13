@@ -22,6 +22,7 @@ void DogFightingScreen::Load()
 	if(this->mLevelManager != nullptr)
 	{
 		this->mLevelManager->LoadLevel(this->IsMultiplayer, this->mGameNode);
+		this->mLevelNode = this->mLevelManager->GetLevelNode();
 	}
 	else
 	{

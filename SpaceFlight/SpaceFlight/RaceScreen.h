@@ -17,6 +17,7 @@ public:
 	bool mShutdown;
 protected:
 	Ogre::SceneNode* mGameNode;
+	Ogre::SceneNode* mLevelNode;
 	LevelManager* mLevelManager;
 };
 
