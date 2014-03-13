@@ -13,16 +13,11 @@ public:
 
 	void Load();
 	void Unload();
-
 	void Update(Ogre::Real elapsedTime);
-
 	bool mShutdown;
 protected:
-	PlayerData players[4];
-	Ogre::SceneNode* vehicleDisplayNode[4];
-	Ogre::SceneNode* cameraNode[4];
-	Ogre::SceneNode* overlayNode[4];
-	Ogre::MovableText* hudData[4];
+	Ogre::SceneNode* mGameNode;
+	LevelManager* mLevelManager;
 };
 
 #endif // DOGFIGHT_H

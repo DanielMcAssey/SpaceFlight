@@ -1,8 +1,10 @@
 #include "stdafx.h"
+#include "VehicleObject.h"
 
 typedef struct PlayerData
 {
-	Ogre::Entity*		_player_vehicle;
+	int _player_id;
+	VehicleObject* _player_vehicle;
 };
 
 typedef struct WindowData
@@ -24,5 +26,6 @@ typedef struct WindowData
 	int totalPlayers;									//Total players in game
 	int playersReady;									//Count of players ready
 	int gameMode;										//Gamemode selected
-	Ogre::Real maxViewDistance;						//The maximum view distance
+	Ogre::Real maxViewDistance;							//The maximum view distance
+	PlayerData* playerData[4];							//Store player data.
 };

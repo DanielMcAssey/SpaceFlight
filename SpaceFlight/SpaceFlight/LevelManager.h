@@ -6,12 +6,15 @@ class LevelManager
 public:
 	LevelManager(WindowData* window, Ogre::SceneManager* sceneManager);
 	~LevelManager(void);
-	void LoadLevel();
+	void LoadLevel(bool IsMultiplayer, Ogre::SceneNode* sceneNode);
+	void UnloadLevel();
+	void Update(Ogre::Real elapsedTime);
 	void ResetPlayerCameras();
 	PlayerObject* GetPlayer(int id);
 protected:
 	WindowData* mWindow;
 	Ogre::SceneManager* mSceneManager;
+	Ogre::SceneNode* mNode;
 	PlayerObject* mPlayers[4];
 };
 

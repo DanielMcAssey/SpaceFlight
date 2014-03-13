@@ -45,7 +45,7 @@ void VehicleSelect::Load()
 	this->mWindow->_obj_rdr_window->removeAllViewports();
 
 	for(i = i; i < max; i++)
-	{
+	{ 
 		if(this->mWindow->activePlayers[i])
 		{
 			this->vehicleIndexID[i] = 0;
@@ -57,7 +57,7 @@ void VehicleSelect::Load()
 			tmpVector.push_back(this->mSceneManager->createEntity("Su32_Flanker_" + i,"Su32.mesh"));
 
 			this->maxVehicles = 4;
-			
+
 
 			if(i == 0)
 				this->mAvailableVehicles_p1 = tmpVector;
@@ -220,6 +220,17 @@ void VehicleSelect::Update(Ogre::Real elapsedTime)
 
 	if(this->mWindow->playersReady == this->mWindow->totalPlayers)
 	{
+		for(int i = 0; i < 4; i++)
+		{
+			//Store Selections
+			if(!this->mWindow->_obj_input->GetState(i).Disconnected)
+			{
+				this->mWindow->playerData[i] = new PlayerData();
+				this->mWindow->playerData[i]->_player_id = i;
+				this->mWindow->playerData[i]->_player_vehicle = new VehicleObject(this->mAvailableVehicles_p1.at(this->vehicleIndexID[i])->getMesh()->getName(), i);
+			}
+		}
+
 		switch(this->mWindow->gameMode)
 		{
 		case 0: //Practice
@@ -283,7 +294,7 @@ void VehicleSelect::Update(Ogre::Real elapsedTime)
 						this->vehicleIndexID[i] += 1;
 
 					this->vehicleDisplayNode[i]->detachAllObjects();
-					
+
 					if(i == 0)
 						this->vehicleDisplayNode[i]->attachObject(this->mAvailableVehicles_p1.at(this->vehicleIndexID[i]));
 					else if(i == 1)

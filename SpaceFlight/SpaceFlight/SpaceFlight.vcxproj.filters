@@ -22,12 +22,6 @@
     <Filter Include="Header Files\Input">
       <UniqueIdentifier>{0a6aa4c6-e599-488f-a41d-76bb8d61b42e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Extra">
-      <UniqueIdentifier>{44cfb692-c462-4b15-9d9e-b7d06f1bd547}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Extra">
-      <UniqueIdentifier>{503c968e-11da-4caf-98ad-e18311deb8bd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Screen">
       <UniqueIdentifier>{681d4dc3-eb3f-4807-80f9-be96b109bd40}</UniqueIdentifier>
     </Filter>
@@ -54,6 +48,12 @@
     </Filter>
     <Filter Include="Source Files\Level">
       <UniqueIdentifier>{427a6306-7113-4736-8d5b-34a2230b5d6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{9bfa5098-01a5-4b6f-a8e8-4a2c02b5d1f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{503c968e-11da-4caf-98ad-e18311deb8bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -102,9 +102,6 @@
     <ClInclude Include="VehicleSelect.h">
       <Filter>Header Files\Screen\DEFAULT_SCREENS</Filter>
     </ClInclude>
-    <ClInclude Include="MovableText.h">
-      <Filter>Header Files\Extra</Filter>
-    </ClInclude>
     <ClInclude Include="DogFightingScreen.h">
       <Filter>Header Files\Screen\DEFAULT_SCREENS</Filter>
     </ClInclude>
@@ -114,14 +111,20 @@
     <ClInclude Include="RaceScreen.h">
       <Filter>Header Files\Screen\DEFAULT_SCREENS</Filter>
     </ClInclude>
-    <ClInclude Include="LevelManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerObject.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="VehicleObject.h">
       <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="MovableText.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +162,7 @@
       <Filter>Source Files\Screen\DEFAULT_SCREENS</Filter>
     </ClCompile>
     <ClCompile Include="MovableText.cpp">
-      <Filter>Source Files\Extra</Filter>
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="DogFightingScreen.cpp">
       <Filter>Source Files\Screen\DEFAULT_SCREENS</Filter>
@@ -170,14 +173,17 @@
     <ClCompile Include="RaceScreen.cpp">
       <Filter>Source Files\Screen\DEFAULT_SCREENS</Filter>
     </ClCompile>
-    <ClCompile Include="LevelManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerObject.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="VehicleObject.cpp">
       <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.cpp">
+      <Filter>Source Files\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

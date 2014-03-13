@@ -4,10 +4,14 @@
 class VehicleObject
 {
 public:
-	VehicleObject(void);
+	VehicleObject(Ogre::String meshFile, int playerID);
 	~VehicleObject(void);
+	void LoadVehicle(Ogre::SceneManager* sceneManager, Ogre::SceneNode* sceneNode);
 protected:
-	Ogre::Entity mModel;
+	int mPlayerID;
+	Ogre::String mMeshFile;
+	Ogre::Entity* mModel;
+	Ogre::SceneNode* mNode;
 };
 
 #endif // VEHICLEOBJECT_H

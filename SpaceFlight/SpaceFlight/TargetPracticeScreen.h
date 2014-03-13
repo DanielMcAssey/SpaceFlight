@@ -1,6 +1,8 @@
 #ifndef TARGETPRACTICE_H
 #define TARGETPRACTICE_H
 
+#include "MovableText.h"
+
 class TargetPracticeScreen : public BaseScreen
 {
 public:
@@ -11,12 +13,11 @@ public:
 
 	void Load();
 	void Unload();
-
 	void Update(Ogre::Real elapsedTime);
-
 	bool mShutdown;
 protected:
-	PlayerData players[4];
+	Ogre::SceneNode* mGameNode;
+	LevelManager* mLevelManager;
 };
 
 #endif // TARGETPRACTICE_H

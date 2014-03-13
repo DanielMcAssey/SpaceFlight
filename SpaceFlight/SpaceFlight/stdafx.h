@@ -38,13 +38,16 @@
 #include "BaseScreen.h"
 #include "MenuScreen.h"
 #include "VehicleSelect.h"
-#include "DogFightingScreen.h"
-#include "RaceScreen.h"
-#include "TargetPracticeScreen.h"
+//Objects
+#include "HUD.h"
 #include "GameObject.h"
 #include "VehicleObject.h"
 #include "PlayerObject.h"
+//Objects
 #include "LevelManager.h"
+#include "DogFightingScreen.h"
+#include "RaceScreen.h"
+#include "TargetPracticeScreen.h"
 
 using namespace std;
 using namespace Ogre;

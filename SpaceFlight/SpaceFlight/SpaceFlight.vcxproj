@@ -92,6 +92,7 @@
     <ClInclude Include="BaseScreen.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="DogFightingScreen.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="MenuScreen.h" />
@@ -114,6 +115,7 @@
     <ClCompile Include="BaseCamera.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="DogFightingScreen.cpp" />
+    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="MenuScreen.cpp" />

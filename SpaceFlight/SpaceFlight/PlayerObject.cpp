@@ -2,10 +2,12 @@
 #include "PlayerObject.h"
 
 
-PlayerObject::PlayerObject(SceneManager* sceneManager, WindowData* window)
+PlayerObject::PlayerObject(SceneManager* sceneManager, WindowData* window, Ogre::SceneNode* sceneNode, int playerID)
 {
 	this->mSceneManager = sceneManager;
 	this->mWindow = window;
+	this->mPlayerID = playerID;
+	this->mNode = sceneNode->createChildSceneNode("player_" + playerID);
 }
 
 
@@ -21,6 +23,7 @@ Ogre::Camera* PlayerObject::LoadCamera(int id)
 	this->mCamera->setNearClipDistance(0.01);
 	this->mCamera->setFarClipDistance(this->mWindow->maxViewDistance);
 	this->mCamera->setAspectRatio(Real(this->mWindow->_obj_viewport[id]->getActualWidth()) / Real(this->mWindow->_obj_viewport[id]->getActualHeight()));
+	this->mNode->attachObject(this->mCamera); //Attach camera to the scene node.
 	return this->mCamera;
 }
 
