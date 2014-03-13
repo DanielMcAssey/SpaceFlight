@@ -4,6 +4,7 @@
 
 RaceScreen::RaceScreen(void)
 {
+	this->mShutdown = false;
 }
 
 
@@ -46,6 +47,12 @@ void RaceScreen::Unload()
 
 void RaceScreen::Update(Ogre::Real elapsedTime)
 {
+	this->mFrameEvent.timeSinceLastFrame = elapsedTime;
+	if(this->mShutdown)
+	{
+		this->GameShutdown();
+		return;
+	}
 	if(this->mLevelManager != nullptr)
 		this->mLevelManager->Update(elapsedTime);
 

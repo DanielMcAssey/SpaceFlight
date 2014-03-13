@@ -3,6 +3,7 @@
 
 DogFightingScreen::DogFightingScreen(void)
 {
+	this->mShutdown = false;
 }
 
 
@@ -46,6 +47,12 @@ void DogFightingScreen::Unload()
 
 void DogFightingScreen::Update(Ogre::Real elapsedTime)
 {
+	this->mFrameEvent.timeSinceLastFrame = elapsedTime;
+	if(this->mShutdown)
+	{
+		this->GameShutdown();
+		return;
+	}
 	if(this->mLevelManager != nullptr)
 		this->mLevelManager->Update(elapsedTime);
 

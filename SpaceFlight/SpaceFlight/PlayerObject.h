@@ -14,9 +14,16 @@ public:
 	Ogre::Real GetHealth();
 	void SetVehicle(VehicleObject* vehicle);
 	VehicleObject* GetVehicle();
+	void ResetCamera();
 protected:
+	void HandleInput();
 	int mPlayerID;
+
+	//Scene Nodes
 	Ogre::SceneNode* mNode;
+	Ogre::SceneNode* mCameraNode;
+	//--SceneNodes
+
 	WindowData* mWindow;
 	Ogre::SceneManager* mSceneManager;
 	Ogre::Camera* mCamera;

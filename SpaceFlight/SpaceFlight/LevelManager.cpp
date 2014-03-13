@@ -31,6 +31,7 @@ void LevelManager::LoadLevel(bool IsMultiplayer, Ogre::SceneNode* sceneNode)
 		if(this->mWindow->activePlayers[i])
 		{
 			this->mPlayers[i] = new PlayerObject(this->mSceneManager, this->mWindow, this->mNode, i);
+			this->mPlayers[i]->SetVehicle(this->mWindow->playerData[i]->_player_vehicle);
 			this->mWindow->_obj_viewport[i]->setCamera(this->mPlayers[i]->LoadCamera(i));
 			this->mWindow->_obj_viewport[i]->setBackgroundColour(Ogre::ColourValue(0.0f, 0.0f, 0.0f, 0.0f));
 		}
@@ -53,13 +54,15 @@ void LevelManager::Update(Ogre::Real elapsedTime)
 	}
 }
 
+#pragma region Helper_Functions
+
 void LevelManager::ResetPlayerCameras()
 {
 	for(int i = 0; i < 4; i++)
 	{
 		if(this->mPlayers[i] != nullptr)
 		{
-			//Reset Camera
+			this->mPlayers[i]->ResetCamera();
 		}
 	}
 }
@@ -82,3 +85,4 @@ Ogre::SceneNode* LevelManager::GetLevelNode()
 	if(this->mNode != nullptr)
 		return this->mNode;
 }
+#pragma endregion

@@ -16,6 +16,7 @@ VehicleSelect::~VehicleSelect(void)
 
 }
 
+
 void VehicleSelect::Load()
 {
 	this->mSceneManager = this->mWindow->_obj_root->createSceneManager(ST_GENERIC, "VehicleSelectManager");
@@ -57,7 +58,6 @@ void VehicleSelect::Load()
 			tmpVector.push_back(this->mSceneManager->createEntity("Su32_Flanker_" + i,"Su32.mesh"));
 
 			this->maxVehicles = 4;
-
 
 			if(i == 0)
 				this->mAvailableVehicles_p1 = tmpVector;
