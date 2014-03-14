@@ -10,7 +10,9 @@ PlayerObject::PlayerObject(SceneManager* sceneManager, WindowData* window, Ogre:
 	this->mNode = sceneNode->createChildSceneNode("player_" + playerID);
 	this->mPosition = Ogre::Vector3(0,0,0);
 	this->mNode->setPosition(this->mPosition);
-
+	this->mGunCooldownTime = 3.0f;
+	this->mGunMaxFireTime = 5.0f;
+	this->mGunCooldownWait = false;
 }
 
 
@@ -22,8 +24,8 @@ PlayerObject::~PlayerObject(void)
 Ogre::Camera* PlayerObject::LoadCamera(int id)
 {
 	this->mCamera = this->mSceneManager->createCamera("PlayerCam_" + id);
-	this->mCamera->setPosition(Ogre::Vector3(this->mPosition.x,this->mPosition.y,50)); //Need to fix
-	this->mCamera->lookAt(this->mPosition);
+	this->mCamera->setPosition(Ogre::Vector3(this->mPosition.x,this->mPosition.y + 5,25)); //Need to fix
+	this->mCamera->lookAt(Ogre::Vector3(this->mPosition.x,this->mPosition.y + 5,this->mPosition.z));
 	this->mCamera->setNearClipDistance(0.01);
 	this->mCamera->setFarClipDistance(this->mWindow->maxViewDistance);
 	this->mCamera->setAspectRatio(Real(this->mWindow->_obj_viewport[id]->getActualWidth()) / Real(this->mWindow->_obj_viewport[id]->getActualHeight()));
@@ -90,7 +92,7 @@ void PlayerObject::HandleInput(Real elapsedTime)
 {
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger > 0.0f)
 	{
-		this->SetPosition(Ogre::Vector3(0.0f, 0.0f, this->mPosition.z + this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger)); //Need to fix
+		this->mNode->translate(0.0f, 0.0f, this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger); //Need to fix
 	}
 
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.X != 0.0f)
@@ -103,12 +105,33 @@ void PlayerObject::HandleInput(Real elapsedTime)
 		this->mNode->pitch(Ogre::Degree(-this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.Y  * elapsedTime * (this->mVehicle->GetStats()->Handling) / 1000), Ogre::Node::TS_LOCAL);
 	}
 
-	if(this->mWindow->_obj_input->GetState(this->mPlayerID).Buttons.LShoulder)
-	{
+	if(this->mWindow->_obj_input->GetState(this->mPlayerID).Buttons.LShoulder == false && this->mGunCooldownWait == false)
+		this->mGunCooldown = 0.0f;
 
+	if(this->mWindow->_obj_input->GetState(this->mPlayerID).Buttons.LShoulder) //Automatic MG
+	{
+		this->mGunCooldown += elapsedTime;
+		if(!this->mGunCooldownWait)
+		{
+			//fire
+			if(this->mGunCooldown >= this->mGunMaxFireTime)
+			{
+				this->mGunCooldownWait = true;
+				this->mGunCooldown = 0.0f;
+			}
+		}
+		else
+		{
+			if(this->mGunCooldown >= this->mGunCooldownTime)
+			{
+				this->mGunCooldownWait = false;
+				this->mGunCooldown = 0.0f;
+			}
+		}
 	}
-	else if(this->mWindow->_obj_input->GetState(this->mPlayerID).ButtonsSingle.RShoulder)
+	
+	if(this->mWindow->_obj_input->GetState(this->mPlayerID).ButtonsSingle.RShoulder) //Missile
 	{
-
+		//fire missile
 	}
 }

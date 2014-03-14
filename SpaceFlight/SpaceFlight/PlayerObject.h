@@ -30,6 +30,15 @@ protected:
 	Ogre::Vector3 mPosition;
 	Ogre::Real mHealth;
 	VehicleObject* mVehicle;
+
+	bool mGunCooldownWait;
+	Ogre::Real mGunCooldown;
+	Ogre::Real mGunCooldownTime;
+	Ogre::Real mGunMaxFireTime;
+
+	int mMaxMissiles;
+	int mCurrentMissiles;
+
 };
 
 #endif // PLAYEROBJECT_H
