@@ -6,6 +6,7 @@ VehicleObject::VehicleObject(Ogre::String meshFile, int vehicleIndex, int player
 {
 	this->mMeshFile =  meshFile;
 	this->mPlayerID = playerID;
+	this->mVehicleIndex = vehicleIndex;
 }
 
 

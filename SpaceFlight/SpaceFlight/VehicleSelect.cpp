@@ -308,8 +308,8 @@ void VehicleSelect::Update(Ogre::Real elapsedTime)
 
 				if(this->vehicleDisplayNode[i] != nullptr)
 				{
-					this->vehicleDisplayNode[i]->yaw(Ogre::Degree(-this->mCamRotate[i] * -this->mWindow->_obj_input->GetState(i).RStick.X  * this->mFrameEvent.timeSinceLastFrame * this->mCamRotSpeed[i]), Ogre::Node::TS_WORLD);
-					this->vehicleDisplayNode[i]->pitch(Ogre::Degree(-this->mCamRotate[i] * this->mWindow->_obj_input->GetState(i).RStick.Y  * this->mFrameEvent.timeSinceLastFrame * this->mCamRotSpeed[i]), Ogre::Node::TS_LOCAL);
+					this->vehicleDisplayNode[i]->yaw(Ogre::Degree(-this->mCamRotate[i] * -this->mWindow->_obj_input->GetState(i).RStick.X  * elapsedTime * this->mCamRotSpeed[i]), Ogre::Node::TS_WORLD);
+					this->vehicleDisplayNode[i]->pitch(Ogre::Degree(-this->mCamRotate[i] * this->mWindow->_obj_input->GetState(i).RStick.Y  * elapsedTime * this->mCamRotSpeed[i]), Ogre::Node::TS_LOCAL);
 				}
 				this->mCamDirection[i] = Ogre::Vector3::ZERO;
 		}

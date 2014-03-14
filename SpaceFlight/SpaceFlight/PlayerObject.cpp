@@ -90,25 +90,25 @@ void PlayerObject::HandleInput(Real elapsedTime)
 {
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger > 0.0f)
 	{
-		this->SetPosition(Ogre::Vector3(0.0f, 0.0f, this->mPosition.z + this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger));
+		this->SetPosition(Ogre::Vector3(0.0f, 0.0f, this->mPosition.z + this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger)); //Need to fix
 	}
 
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.X != 0.0f)
 	{
-		this->mNode->roll(Ogre::Degree(-this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.X  * elapsedTime * (this->mVehicle->GetStats()->Handling * 100)), Ogre::Node::TS_WORLD);
+		this->mNode->roll(Ogre::Degree(-this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.X  * elapsedTime * (this->mVehicle->GetStats()->Handling) / 1000), Ogre::Node::TS_LOCAL);
 	}
 
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.Y != 0.0f)
 	{
-		this->mNode->pitch(Ogre::Degree(-this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.Y  * elapsedTime * (this->mVehicle->GetStats()->Handling * 100)), Ogre::Node::TS_WORLD);
+		this->mNode->pitch(Ogre::Degree(-this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.Y  * elapsedTime * (this->mVehicle->GetStats()->Handling) / 1000), Ogre::Node::TS_LOCAL);
 	}
 
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).Buttons.LShoulder)
 	{
-		this->mNode->yaw(Ogre::Degree((this->mVehicle->GetStats()->Handling * 100) * elapsedTime), Ogre::Node::TS_WORLD);
+
 	}
-	else if(this->mWindow->_obj_input->GetState(this->mPlayerID).Buttons.RShoulder)
+	else if(this->mWindow->_obj_input->GetState(this->mPlayerID).ButtonsSingle.RShoulder)
 	{
-		this->mNode->yaw(Ogre::Degree((this->mVehicle->GetStats()->Handling * 100) * elapsedTime), Ogre::Node::TS_WORLD);
+
 	}
 }
