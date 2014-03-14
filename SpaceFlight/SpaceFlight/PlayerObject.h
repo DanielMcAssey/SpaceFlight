@@ -16,7 +16,7 @@ public:
 	VehicleObject* GetVehicle();
 	void ResetCamera();
 protected:
-	void HandleInput();
+	void HandleInput(Ogre::Real elapsedTime);
 	int mPlayerID;
 
 	//Scene Nodes

@@ -13,6 +13,7 @@ public:
 	PlayerObject* GetPlayer(int id);
 	Ogre::SceneNode* GetLevelNode();
 protected:
+	void GenerateTerrain();
 	WindowData* mWindow;
 	Ogre::SceneManager* mSceneManager;
 	Ogre::SceneNode* mNode;

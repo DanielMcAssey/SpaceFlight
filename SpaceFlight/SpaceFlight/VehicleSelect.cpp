@@ -146,13 +146,13 @@ void VehicleSelect::Load()
 			this->vehicleDisplayNode[i]->pitch(Ogre::Degree(-20.0));
 
 			if(i == 0)
-				this->vehicleDisplayNode[i]->attachObject(this->mAvailableVehicles_p1.back());
+				this->vehicleDisplayNode[i]->attachObject(this->mAvailableVehicles_p1.at(this->vehicleIndexID[i]));
 			else if(i == 1)
-				this->vehicleDisplayNode[i]->attachObject(this->mAvailableVehicles_p2.back());
+				this->vehicleDisplayNode[i]->attachObject(this->mAvailableVehicles_p2.at(this->vehicleIndexID[i]));
 			else if(i == 2)
-				this->vehicleDisplayNode[i]->attachObject(this->mAvailableVehicles_p3.back());
+				this->vehicleDisplayNode[i]->attachObject(this->mAvailableVehicles_p3.at(this->vehicleIndexID[i]));
 			else if(i == 3)
-				this->vehicleDisplayNode[i]->attachObject(this->mAvailableVehicles_p4.back());
+				this->vehicleDisplayNode[i]->attachObject(this->mAvailableVehicles_p4.at(this->vehicleIndexID[i]));
 
 			this->cameraNode[i] = this->mSceneManager->getRootSceneNode()->createChildSceneNode("CameraNode_" + i);
 			this->cameraNode[i]->attachObject(this->mActiveCamera[i]);
@@ -227,7 +227,7 @@ void VehicleSelect::Update(Ogre::Real elapsedTime)
 			{
 				this->mWindow->playerData[i] = new PlayerData();
 				this->mWindow->playerData[i]->_player_id = i;
-				this->mWindow->playerData[i]->_player_vehicle = new VehicleObject(this->mAvailableVehicles_p1.at(this->vehicleIndexID[i])->getMesh()->getName(), i);
+				this->mWindow->playerData[i]->_player_vehicle = new VehicleObject(this->mAvailableVehicles_p1.at(this->vehicleIndexID[i])->getMesh()->getName(), this->vehicleIndexID[i], i);
 			}
 		}
 
