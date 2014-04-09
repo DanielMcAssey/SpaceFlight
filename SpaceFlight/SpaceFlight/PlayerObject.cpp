@@ -38,6 +38,8 @@ Ogre::Camera* PlayerObject::LoadCamera(int id)
 void PlayerObject::Update(Real elapsedTime)
 {
 	this->HandleInput(elapsedTime); //Deal with Input
+
+	//Movement Stuff
 }
 
 
@@ -113,7 +115,10 @@ void PlayerObject::HandleInput(Real elapsedTime)
 		this->mGunCooldown += elapsedTime;
 		if(!this->mGunCooldownWait)
 		{
-			//fire
+			/////////////
+			//FIRE WEAPON
+			/////////////
+
 			if(this->mGunCooldown >= this->mGunMaxFireTime)
 			{
 				this->mGunCooldownWait = true;
@@ -132,6 +137,14 @@ void PlayerObject::HandleInput(Real elapsedTime)
 	
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).ButtonsSingle.RShoulder) //Missile
 	{
-		//fire missile
+		if(this->mCurrentMissiles > 0)
+		{
+			//////////////
+			//FIRE MISSILE
+			//////////////
+
+
+			this->mCurrentMissiles -= 1;
+		}
 	}
 }
