@@ -69,12 +69,16 @@ void RaceScreen::CreateCheckpoints()
 	srand(time(0)); //making it random number
 	int RandomMax = rand()%20+10;
 	int i = 0;
+	//list of checkpoints
+
 	while (i<RandomMax)
 	{
 		//get position of player
 		//generate new checkpoint
 			//check it not near player within 200 units so -100 & +100
 			//check if no other spheres are within 200 units
+					//sphere position will be given by the middle of sphere so they all have 100 radius
+					//this will change according to how everything scales. 
 			//if check fails generate new position
 		//if check succeds add it to list
 	}
