@@ -81,3 +81,17 @@ void RaceScreen::CreateCheckpoints()
 
 
 }
+
+// functions to do
+	//hud
+	//	timer
+	//	lap counter
+	//	position
+	//  minimap
+	//  health
+	//  weapon counters
+//
+	//lapcontrol/racecontrol system
+	//	check whos in lead
+	//	check which checkpoints each player needs to go to
+	
