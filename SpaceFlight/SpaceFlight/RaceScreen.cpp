@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "RaceScreen.h"
-
+#include <random>
+#include <time.h>
 
 RaceScreen::RaceScreen(void)
 {
@@ -32,6 +33,10 @@ void RaceScreen::Load()
 	}
 
 	//Load Stuff
+
+	//load checkpoints spheres
+	//load hud
+
 }
 
 void RaceScreen::Unload()
@@ -57,4 +62,22 @@ void RaceScreen::Update(Ogre::Real elapsedTime)
 		this->mLevelManager->Update(elapsedTime);
 
 	//Update Stuff
+}
+
+void RaceScreen::CreateCheckpoints()
+{
+	srand(time(0)); //making it random number
+	int RandomMax = rand()%20+10;
+	int i = 0;
+	while (i<RandomMax)
+	{
+		//get position of player
+		//generate new checkpoint
+			//check it not near player within 200 units so -100 & +100
+			//check if no other spheres are within 200 units
+			//if check fails generate new position
+		//if check succeds add it to list
+	}
+
+
 }

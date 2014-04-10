@@ -14,6 +14,7 @@ public:
 	void Load();
 	void Unload();
 	void Update(Ogre::Real elapsedTime);
+	void CreateCheckpoints();
 	bool mShutdown;
 protected:
 	Ogre::SceneNode* mGameNode;
