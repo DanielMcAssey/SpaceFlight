@@ -35,19 +35,22 @@ void LevelManager::LoadLevel(bool IsMultiplayer, Ogre::SceneNode* sceneNode)
 			this->mPlayers[i]->SetVehicle(this->mWindow->playerData[i]->_player_vehicle);
 			this->mPlayers[i]->SetPosition(Ogre::Vector3(0.0f, 0.0f, -100.0f));
 			this->mWindow->_obj_viewport[i]->setCamera(this->mPlayers[i]->LoadCamera(i));
-			this->mWindow->_obj_viewport[i]->setBackgroundColour(Ogre::ColourValue(0.0f, 0.0f, 0.0f, 0.0f));
+			this->mWindow->_obj_viewport[i]->setBackgroundColour(Ogre::ColourValue(0.0f, 0.0f, 0.0f, 0.0f)); //Reset BG Colour
 		}
 	}
 
+	//Test Entity
 	Entity* tmpEntity = this->mSceneManager->createEntity("Sphere", SceneManager::PT_SPHERE);
 	tmpEntity->setMaterialName("Examples/BumpyMetal");
 	this->mNode->attachObject(tmpEntity);
 }
 
+
 void LevelManager::UnloadLevel()
 {
 
 }
+
 
 void LevelManager::Update(Ogre::Real elapsedTime)
 {
@@ -56,14 +59,22 @@ void LevelManager::Update(Ogre::Real elapsedTime)
 		if(this->mWindow->activePlayers[i])
 		{
 			this->mPlayers[i]->Update(elapsedTime);
+
+			if(this->mPlayers[i]->GetHealth() <= 0.0f)
+			{
+				//Kill
+			}
 		}
 	}
 }
 
+
 void LevelManager::GenerateTerrain()
 {
 	//generate terrain
+
 }
+
 
 #pragma region Helper_Functions
 
@@ -78,6 +89,7 @@ void LevelManager::ResetPlayerCameras()
 	}
 }
 
+
 PlayerObject* LevelManager::GetPlayer(int id)
 {
 	if(id < 4)
@@ -90,6 +102,7 @@ PlayerObject* LevelManager::GetPlayer(int id)
 
 	return nullptr;
 }
+
 
 Ogre::SceneNode* LevelManager::GetLevelNode()
 {
