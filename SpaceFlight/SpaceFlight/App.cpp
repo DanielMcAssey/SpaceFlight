@@ -53,6 +53,9 @@ bool App::internAppSetup(void)
 	//Create the Scene Graph Manager, Default Camera and Window Render Viewports/
 	Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 
+	Ogre::MaterialManager::getSingleton().setDefaultTextureFiltering(Ogre::TFO_ANISOTROPIC);
+    Ogre::MaterialManager::getSingleton().setDefaultAnisotropy(7);
+
 	//Call our Internal Default Resource Import Function
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 
@@ -72,7 +75,11 @@ bool App::internAppSetup(void)
 		this->_obj_window.playerReady[i] = false;
 	}
 
-	this->_obj_window.maxViewDistance = 30000.0f;
+	if(this->_obj_window._obj_root->getRenderSystem()->getCapabilities()->hasCapability(Ogre::RSC_INFINITE_FAR_PLANE))
+		this->_obj_window.maxViewDistance = 30000.0f;
+	else
+		this->_obj_window.maxViewDistance = 30000.0f;
+
 	//Create the screen manager
 	this->_obj_screenmanager = new ScreenManager(&this->_obj_window);
 	MenuScreen::CreateScreen(this->_obj_screenmanager, "MenuScreen");
@@ -150,11 +157,11 @@ void App::startApp(void)
 {
 	//Preprocessor Directives
 #ifdef _DEBUG
-	this->_obj_window._fname_cfg_res = "./resources_d.cfg";
-	this->_obj_window._fname_cfg_plugins = "./plugins_d.cfg";
+	this->_obj_window._fname_cfg_res = "./Content/cfg/resources_d.cfg";
+	this->_obj_window._fname_cfg_plugins = "./Content/cfg/plugins_d.cfg";
 #else
-	this->_obj_window._fname_cfg_res = "./resources.cfg";
-	this->_obj_window._fname_cfg_plugins = "./plugins.cfg";
+	this->_obj_window._fname_cfg_res = "./Content/cfg/resources.cfg";
+	this->_obj_window._fname_cfg_plugins = "./Content/cfg/plugins.cfg";
 #endif
 
 	//Setup the Base ogre system.

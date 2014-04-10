@@ -92,19 +92,22 @@ void PlayerObject::ResetCamera()
 
 void PlayerObject::HandleInput(Real elapsedTime)
 {
-	if(this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger > 0.0f)
-	{
-		this->mNode->translate(0.0f, 0.0f, this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger); //Need to fix
-	}
+	Vector3 _Direction = this->mNode->_getDerivedOrientation() * Vector3::NEGATIVE_UNIT_Z;
+	Real _Speed = this->mVehicle->GetStats()->Speed * 0.3f;
+
+	if(this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger != 0.0f)
+		this->mNode->translate((_Direction * (this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger * _Speed)) * elapsedTime); //Need to fix
+	else
+		this->mNode->translate((_Direction * _Speed) * elapsedTime);
 
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.X != 0.0f)
 	{
-		this->mNode->roll(Ogre::Degree(-this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.X  * elapsedTime * (this->mVehicle->GetStats()->Handling) / 1000), Ogre::Node::TS_LOCAL);
+		this->mNode->roll(Ogre::Degree(-this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.X  * elapsedTime * (this->mVehicle->GetStats()->Handling / 2000)), Ogre::Node::TS_LOCAL);
 	}
 
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.Y != 0.0f)
 	{
-		this->mNode->pitch(Ogre::Degree(-this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.Y  * elapsedTime * (this->mVehicle->GetStats()->Handling) / 1000), Ogre::Node::TS_LOCAL);
+		this->mNode->pitch(Ogre::Degree(-this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.Y  * elapsedTime * (this->mVehicle->GetStats()->Handling / 2000)), Ogre::Node::TS_LOCAL);
 	}
 
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).Buttons.LShoulder == false && this->mGunCooldownWait == false)
