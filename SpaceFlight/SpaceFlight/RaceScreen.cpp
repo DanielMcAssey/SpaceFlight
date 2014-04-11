@@ -33,7 +33,7 @@ void RaceScreen::Load()
 	}
 
 	//Load Stuff
-
+	CreateCheckpoints();
 	//load checkpoints spheres
 	//load hud
 
@@ -66,36 +66,114 @@ void RaceScreen::Update(Ogre::Real elapsedTime)
 
 void RaceScreen::CreateCheckpoints()
 {
-	srand(time(0)); //making it random number
-	int RandomMax = rand()%20+10;
-	int i = 0;
+	//srand(time(0)); //making it random number
+	//int RandomMax = rand()%20+10;
+	//int i = 0;
 
 
 
 	//list of checkpoints
 
-	SceneNode* mStaticNode = this->mSceneManager->getRootSceneNode()->createChildSceneNode("StaticNode");
+	mCheckpoints = this->mSceneManager->getRootSceneNode()->createChildSceneNode("StaticNode");
 
 	Entity* mTempEntity = nullptr;
 
-	this->mTempNode = mStaticNode->createChildSceneNode("Checkpoints");
+	//game area is about 34000 by 34000
+	// -17000 to +17000
+	//minimum height has to be greater than 200
+
+	this->mTempNode = mGameNode->createChildSceneNode("Checkpoints");
 	Ogre::String mNodeName = "CheckpointNode";
 	mNodeName.append("_").append(Ogre::StringConverter::toString(1));
 	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
 	Ogre::String mEntityName = "Checkpoint";
 	mEntityName.append("_").append(Ogre::StringConverter::toString(1));
 	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
-	mTempEntity->setMaterialName("Custom/Fence");
+	mTempEntity->setMaterialName("Examples/BumpyMetal");
 	mTempNode->attachObject(mTempEntity);
-	mTempNode->setPosition(250,100,100);
+	mTempNode->setPosition(2500,735,100);
 
 	mNodeName.append("_").append(Ogre::StringConverter::toString(2));
 	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
 	mEntityName.append("_").append(Ogre::StringConverter::toString(2));
 	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
-	mTempEntity->setMaterialName("Custom/Fence");
+	mTempEntity->setMaterialName("Examples/BumpyMetal");
 	mTempNode->attachObject(mTempEntity);
-	mTempNode->setPosition(400,100,100);
+	mTempNode->setPosition(400,952,65);
+
+	mNodeName.append("_").append(Ogre::StringConverter::toString(3));
+	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
+	mEntityName.append("_").append(Ogre::StringConverter::toString(3));
+	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
+	mTempEntity->setMaterialName("Examples/BumpyMetal");
+	mTempNode->attachObject(mTempEntity);
+	mTempNode->setPosition(-400,498,-100);
+
+	mNodeName.append("_").append(Ogre::StringConverter::toString(4));
+	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
+	mEntityName.append("_").append(Ogre::StringConverter::toString(4));
+	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
+	mTempEntity->setMaterialName("Examples/BumpyMetal");
+	mTempNode->attachObject(mTempEntity);
+	mTempNode->setPosition(-896,1789,-894);
+
+	mNodeName.append("_").append(Ogre::StringConverter::toString(5));
+	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
+	mEntityName.append("_").append(Ogre::StringConverter::toString(5));
+	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
+	mTempEntity->setMaterialName("Examples/BumpyMetal");
+	mTempNode->attachObject(mTempEntity);
+	mTempNode->setPosition(-1834,2000,957);
+
+	mNodeName.append("_").append(Ogre::StringConverter::toString(6));
+	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
+	mEntityName.append("_").append(Ogre::StringConverter::toString(6));
+	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
+	mTempEntity->setMaterialName("Examples/BumpyMetal");
+	mTempNode->attachObject(mTempEntity);
+	mTempNode->setPosition(-1834,2000,957);
+
+	mNodeName.append("_").append(Ogre::StringConverter::toString(7));
+	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
+	mEntityName.append("_").append(Ogre::StringConverter::toString(7));
+	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
+	mTempEntity->setMaterialName("Examples/BumpyMetal");
+	mTempNode->attachObject(mTempEntity);
+	mTempNode->setPosition(2000,198,-1943);
+
+	mNodeName.append("_").append(Ogre::StringConverter::toString(8));
+	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
+	mEntityName.append("_").append(Ogre::StringConverter::toString(8));
+	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
+	mTempEntity->setMaterialName("Examples/BumpyMetal");
+	mTempNode->attachObject(mTempEntity);
+	mTempNode->setPosition(-1100,1842,1868);
+
+	mNodeName.append("_").append(Ogre::StringConverter::toString(9));
+	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
+	mEntityName.append("_").append(Ogre::StringConverter::toString(9));
+	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
+	mTempEntity->setMaterialName("Examples/BumpyMetal");
+	mTempNode->attachObject(mTempEntity);
+	mTempNode->setPosition(-1847,234,1023);
+
+	mNodeName.append("_").append(Ogre::StringConverter::toString(10));
+	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
+	mEntityName.append("_").append(Ogre::StringConverter::toString(10));
+	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
+	mTempEntity->setMaterialName("Examples/BumpyMetal");
+	mTempNode->attachObject(mTempEntity);
+	mTempNode->setPosition(1285,578,-964);
+
+	mNodeName.append("_").append(Ogre::StringConverter::toString(11));
+	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
+	mEntityName.append("_").append(Ogre::StringConverter::toString(11));
+	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
+	mTempEntity->setMaterialName("Examples/BumpyMetal");
+	mTempNode->attachObject(mTempEntity);
+	mTempNode->setPosition(10000,2000,10000);
+
+
 
 
 	//Entity* tmpEntity = this->mSceneManager->createEntity("Sphere", SceneManager::PT_SPHERE);
