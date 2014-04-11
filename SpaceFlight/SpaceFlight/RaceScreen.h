@@ -20,6 +20,10 @@ protected:
 	Ogre::SceneNode* mGameNode;
 	Ogre::SceneNode* mLevelNode;
 	LevelManager* mLevelManager;
+
+
+	Ogre::SceneNode* mCheckpoints;
+	Ogre::SceneNode* mTempNode;
 };
 
 #endif // RACE_H
