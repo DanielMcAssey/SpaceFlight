@@ -69,19 +69,50 @@ void RaceScreen::CreateCheckpoints()
 	srand(time(0)); //making it random number
 	int RandomMax = rand()%20+10;
 	int i = 0;
+
+
+
 	//list of checkpoints
 
-	while (i<RandomMax)
-	{
-		//get position of player
-		//generate new checkpoint
-			//check it not near player within 200 units so -100 & +100
-			//check if no other spheres are within 200 units
-					//sphere position will be given by the middle of sphere so they all have 100 radius
-					//this will change according to how everything scales. 
-			//if check fails generate new position
-		//if check succeds add it to list
-	}
+	SceneNode* mStaticNode = this->mSceneManager->getRootSceneNode()->createChildSceneNode("StaticNode");
+
+	Entity* mTempEntity = nullptr;
+
+	this->mTempNode = mStaticNode->createChildSceneNode("Checkpoints");
+	Ogre::String mNodeName = "CheckpointNode";
+	mNodeName.append("_").append(Ogre::StringConverter::toString(1));
+	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
+	Ogre::String mEntityName = "Checkpoint";
+	mEntityName.append("_").append(Ogre::StringConverter::toString(1));
+	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
+	mTempEntity->setMaterialName("Custom/Fence");
+	mTempNode->attachObject(mTempEntity);
+	mTempNode->setPosition(250,100,100);
+
+	mNodeName.append("_").append(Ogre::StringConverter::toString(2));
+	mTempNode = this->mCheckpoints->createChildSceneNode(mNodeName);
+	mEntityName.append("_").append(Ogre::StringConverter::toString(2));
+	mTempEntity = this->mSceneManager->createEntity(mEntityName,SceneManager::PT_SPHERE);
+	mTempEntity->setMaterialName("Custom/Fence");
+	mTempNode->attachObject(mTempEntity);
+	mTempNode->setPosition(400,100,100);
+
+
+	//Entity* tmpEntity = this->mSceneManager->createEntity("Sphere", SceneManager::PT_SPHERE);
+	//tmpEntity->
+
+	//while (i<RandomMax)
+	//{
+	//	
+	//	//get position of player
+	//	//generate new checkpoint
+	//		//check it not near player within 200 units so -100 & +100
+	//		//check if no other spheres are within 200 units
+	//				//sphere position will be given by the middle of sphere so they all have 100 radius
+	//				//this will change according to how everything scales. 
+	//		//if check fails generate new position
+	//	//if check succeds add it to list
+	//}
 
 
 }
