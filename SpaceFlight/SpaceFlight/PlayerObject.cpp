@@ -30,7 +30,7 @@ Ogre::Camera* PlayerObject::LoadCamera(int id)
 	this->mCamera->setNearClipDistance(0.01);
 	this->mCamera->setFarClipDistance(this->mWindow->maxViewDistance);
 	this->mCamera->setAspectRatio(Real(this->mWindow->_obj_viewport[id]->getActualWidth()) / Real(this->mWindow->_obj_viewport[id]->getActualHeight()));
-	this->mCameraNode = this->mNode->createChildSceneNode("player_camera"); //Create camera node.
+	this->mCameraNode = this->mNode->createChildSceneNode("player_camera_" + id); //Create camera node.
 	this->mCameraNode->attachObject(this->mCamera); //Attach camera to the scene node.
 	return this->mCamera;
 }
@@ -87,6 +87,12 @@ void PlayerObject::ResetCamera()
 {
 	this->mCameraNode->setPosition(Ogre::Vector3(this->mPosition.x,this->mPosition.y,50));
 	this->mCamera->lookAt(this->mPosition);
+}
+
+
+void PlayerObject::KillPlayer()
+{
+
 }
 
 

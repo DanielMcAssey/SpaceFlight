@@ -58,7 +58,14 @@ void MenuScreen::Load()
 
 	this->startupMsg = new Ogre::MovableText("ALERT_001", "Press Start", "BlueHighway-64", 5.0f, Ogre::ColourValue::Black);
 	this->startupMsg->setTextAlignment(Ogre::MovableText::H_CENTER, Ogre::MovableText::V_ABOVE);
-	this->menuNode->attachObject(this->startupMsg);
+	this->startupTextNode = this->menuNode->createChildSceneNode("ALERT_001_NODE");
+	this->startupTextNode->attachObject(this->startupMsg);
+
+	this->menuText = new Ogre::MovableText("MENU_01", "Game Modes", "BlueHighway-64", 3.0f, Ogre::ColourValue::Black);
+	this->menuText->setTextAlignment(Ogre::MovableText::H_CENTER, Ogre::MovableText::V_ABOVE);
+	this->menuTextNode = this->menuNode->createChildSceneNode("MENU_01_NODE");
+	this->menuTextNode->translate(0.0f, 2.5f, 0.0f);
+	this->menuTextNode->detachAllObjects();
 }
 
 void MenuScreen::Unload()
@@ -90,7 +97,7 @@ void MenuScreen::Update(Ogre::Real elapsedTime)
 
 		if(this->startPressed) //Menu Screen
 		{
-			if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).DPadSingle.Down)
+			if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).DPadSingle.Right)
 			{
 				if(this->menuIndex + 1 >= this->maxMenuItems)
 				{
@@ -102,7 +109,7 @@ void MenuScreen::Update(Ogre::Real elapsedTime)
 				}
 
 			}
-			else if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).DPadSingle.Up)
+			else if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).DPadSingle.Left)
 			{
 				if(this->menuIndex - 1 < 0)
 				{
@@ -114,18 +121,18 @@ void MenuScreen::Update(Ogre::Real elapsedTime)
 				}
 			}
 
-			if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).DPadSingle.Up || this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).DPadSingle.Down)
+			if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).DPadSingle.Left || this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).DPadSingle.Right)
 			{
 				switch(this->menuIndex)
 				{
 				case 0: //Practice
-					this->startupMsg->setCaption("Practice Mode");
+					this->startupMsg->setCaption("<-  Practice Mode  ->");
 					break;
 				case 1: //Race
-					this->startupMsg->setCaption("Race Mode");
+					this->startupMsg->setCaption("<-  Race Mode  ->");
 					break;
 				case 2: //Dog Fight
-					this->startupMsg->setCaption("VS Mode");
+					this->startupMsg->setCaption("<-  VS Mode  ->");
 					break;
 				}
 			}
@@ -153,7 +160,19 @@ void MenuScreen::Update(Ogre::Real elapsedTime)
 		{
 			if(this->mWindow->_obj_input->GetState(this->mWindow->controllingGamepadID).ButtonsSingle.Start)
 			{
-				this->startupMsg->setCaption("Game Modes");
+				this->menuTextNode->attachObject(this->menuText);
+				switch(this->menuIndex)
+				{
+				case 0: //Practice
+					this->startupMsg->setCaption("<-  Practice Mode  ->");
+					break;
+				case 1: //Race
+					this->startupMsg->setCaption("<-  Race Mode  ->");
+					break;
+				case 2: //Dog Fight
+					this->startupMsg->setCaption("<-  VS Mode  ->");
+					break;
+				}
 				this->startupMsg->setCharacterHeight(2.0f);
 				this->startupMsg->setTextAlignment(MovableText::H_CENTER, MovableText::V_ABOVE);
 				this->startPressed = true;

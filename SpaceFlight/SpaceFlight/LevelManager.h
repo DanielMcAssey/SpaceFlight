@@ -11,11 +11,11 @@ public:
 	LevelManager(WindowData* window, Ogre::SceneManager* sceneManager);
 	~LevelManager(void);
 	void LoadLevel(bool IsMultiplayer, Ogre::SceneNode* sceneNode);
-	void UnloadLevel();
+	void UnloadLevel(void);
 	void Update(Ogre::Real elapsedTime);
-	void ResetPlayerCameras();
+	void ResetPlayerCameras(void);
 	PlayerObject* GetPlayer(int id);
-	Ogre::SceneNode* GetLevelNode();
+	Ogre::SceneNode* GetLevelNode(void);
 private:
 	Ogre::TerrainGlobalOptions* mTerrainGlobals;
     Ogre::TerrainGroup* mTerrainGroup;
@@ -26,13 +26,17 @@ private:
     void InitBlendMaps(Ogre::Terrain* _terrain);
     void ConfigTerrainDefaults(Ogre::Light* _light);
 protected:
-	void GenerateTerrain(void);
 	WindowData* mWindow;
 	Ogre::SceneManager* mSceneManager;
 	Ogre::SceneNode* mNode;
 	PlayerObject* mPlayers[4];
 	Ogre::Light* mLevelLight;
 	VolCloudManager* mCloudManager;
+
+	Ogre::MovableText* mStatusText[4];
+	Ogre::SceneNode* mPlayerScenes[4];
+
+	void GenerateTerrain(void);
 };
 
 #endif // LEVELMANAGER_H
