@@ -29,7 +29,7 @@ namespace Ogre {
 		HorizontalAlignment		mHorizontalAlignment;
 		VerticalAlignment		mVerticalAlignment;
  
-		ColourValue				mColor;
+		ColourValue				mColour;
 		RenderOperation			mRenderOp;
 		AxisAlignedBox			mAABB;
 		LightList				mLList;
@@ -38,7 +38,7 @@ namespace Ogre {
 		Real					mSpaceWidth;
  
 		bool					mNeedUpdate;
-		bool					mUpdateColors;
+		bool					mUpdateColours;
 		bool					mOnTop;
  
 		Real					mTimeUntilNextToggle;
@@ -55,7 +55,7 @@ namespace Ogre {
  
 		/******************************** public methods ******************************/
 	public:
-		MovableText(const String &name, const String &caption, const String &fontName = "BlueHighway-8", Real charHeight = 1.0, const ColourValue &color = ColourValue::White);
+		MovableText(const String &name, const String &caption, const String &fontName = "BlueHighway-8", Real charHeight = 1.0, const ColourValue &Colour = ColourValue::White);
 		virtual ~MovableText();
  
 		// Add to build on Shoggoth:
@@ -64,7 +64,7 @@ namespace Ogre {
 		// Set settings
 		void						setFontName(const String &fontName);
 		void						setCaption(const String &caption);
-		void						setColor(const ColourValue &color);
+		void						setColour(const ColourValue &Colour);
 		void						setCharacterHeight(Real height);
 		void						setSpaceWidth(Real width);
 		void						setTextAlignment(const HorizontalAlignment& horizontalAlignment, const VerticalAlignment& verticalAlignment);
@@ -75,7 +75,7 @@ namespace Ogre {
 		// Get settings
 		const   String				&getFontName()	const {return mFontName;}
 		const   String				&getCaption()	const {return mCaption;}
-		const   ColourValue			&getColor()		const {return mColor;}
+		const   ColourValue			&getColour()		const {return mColour;}
  
 		Real						getCharacterHeight() const {return mCharHeight;}
 		Real						getSpaceWidth() const {return mSpaceWidth;}
@@ -89,7 +89,7 @@ namespace Ogre {
  
 		// from MovableText, create the object
 		void						_setupGeometry();
-		void						_updateColors();
+		void						_updateColours();
  
 		// from MovableObject
 		void						getWorldTransforms(Matrix4 *xform) const;

@@ -1,0 +1,89 @@
+vertex_program VolClouds_VP_HLSL hlsl
+{
+    source ExtClouds.hlsl
+    entry_point main_vp
+    target vs_1_1
+
+    default_params
+    {
+		param_named_auto uWorldViewProj worldviewproj_matrix
+    }
+}
+
+vertex_program VolClouds_VP unified
+{
+    delegate VolClouds_VP_HLSL
+}
+
+fragment_program VolClouds_FP_HLSL hlsl
+{
+    source ExtClouds.hlsl
+    entry_point main_fp
+    target ps_2_0
+
+    default_params
+    {
+    }
+}
+
+fragment_program VolClouds_FP unified
+{
+    delegate VolClouds_FP_HLSL
+}
+
+material VolClouds
+{
+	receive_shadows off
+	
+	technique
+	{
+		pass
+		{
+			lighting off
+
+			depth_write off
+			depth_check on
+			
+			cull_hardware none 
+			cull_software none
+			
+			scene_blend alpha_blend
+			alpha_rejection greater 0
+
+			vertex_program_ref VolClouds_VP 
+			{
+			    param_named_auto uCameraPosition camera_position_object_space
+			    param_named uRadius float 30000
+			}
+
+			fragment_program_ref VolClouds_FP 
+			{ 
+				param_named uInterpolation float 0
+				param_named uSunDirection float3 0 1 0
+				param_named uSunColor float3 1 1 1
+				param_named uAmbientColor float3 0.63 0.63 0.7
+				param_named uLightResponse float4 0.25 0.2 1 0.1
+				param_named uAmbientFactors float4 0.45 0.3 0.6 1
+			}
+			
+			texture_unit Density0
+			{
+			    tex_address_mode wrap
+			    tex_coord_set 0
+			}
+			
+			texture_unit Density1
+			{
+			    tex_address_mode wrap
+			    tex_coord_set 1
+			}
+			
+			texture_unit Noise
+			{
+				tex_address_mode wrap
+				tex_coord_set 2
+				texture Noise.jpg
+			}
+		}
+	}
+}

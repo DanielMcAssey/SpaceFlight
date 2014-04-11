@@ -6,7 +6,7 @@
 class VolCloudManager
 {
 public:
-	VolCloudManager(Ogre::SceneManager *_sceneManager);
+	VolCloudManager(Ogre::SceneManager* _sceneManager);
 	~VolCloudManager(void);
 
 	void Load(const Ogre::Real& radius = -1);

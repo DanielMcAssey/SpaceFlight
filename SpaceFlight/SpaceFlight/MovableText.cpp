@@ -18,7 +18,7 @@ using namespace Ogre;
 #define POS_TEX_BINDING    0
 #define COLOUR_BINDING     1
  
-MovableText::MovableText(const String &name, const String &caption, const String &fontName, Real charHeight, const ColourValue &color)
+MovableText::MovableText(const String &name, const String &caption, const String &fontName, Real charHeight, const ColourValue &Colour)
 : mpCam(NULL)
 , mpWin(NULL)
 , mpFont(NULL)
@@ -26,11 +26,11 @@ MovableText::MovableText(const String &name, const String &caption, const String
 , mCaption(caption)
 , mFontName(fontName)
 , mCharHeight(charHeight)
-, mColor(color)
+, mColour(Colour)
 , mType("MovableText")
 , mTimeUntilNextToggle(0)
 , mSpaceWidth(0)
-, mUpdateColors(true)
+, mUpdateColours(true)
 , mOnTop(false)
 , mHorizontalAlignment(H_LEFT)
 , mVerticalAlignment(V_BELOW)
@@ -98,12 +98,12 @@ void MovableText::setCaption(const String &caption)
     }
 }
  
-void MovableText::setColor(const ColourValue &color)
+void MovableText::setColour(const ColourValue &Colour)
 {
-    if (color != mColor)
+    if (Colour != mColour)
     {
-        mColor = color;
-        mUpdateColors = true;
+        mColour = Colour;
+        mUpdateColours = true;
     }
 }
  
@@ -176,7 +176,7 @@ void MovableText::_setupGeometry()
         {
             delete mRenderOp.vertexData;
             mRenderOp.vertexData = NULL;
-            mUpdateColors = true;
+            mUpdateColours = true;
         }
     }
  
@@ -452,26 +452,26 @@ void MovableText::_setupGeometry()
     mAABB = Ogre::AxisAlignedBox(min, max);
     mRadius = Ogre::Math::Sqrt(maxSquaredRadius);
  
-    if (mUpdateColors)
-        this->_updateColors();
+    if (mUpdateColours)
+        this->_updateColours();
  
     mNeedUpdate = false;
 }
  
-void MovableText::_updateColors(void)
+void MovableText::_updateColours(void)
 {
     assert(mpFont);
     assert(!mpMaterial.isNull());
  
     // Convert to system-specific
-    RGBA color;
-    Root::getSingleton().convertColourValue(mColor, &color);
+    RGBA Colour;
+    Root::getSingleton().convertColourValue(mColour, &Colour);
     HardwareVertexBufferSharedPtr vbuf = mRenderOp.vertexData->vertexBufferBinding->getBuffer(COLOUR_BINDING);
     RGBA *pDest = static_cast<RGBA*>(vbuf->lock(HardwareBuffer::HBL_DISCARD));
     for (int i = 0; i < (int)mRenderOp.vertexData->vertexCount; ++i)
-        *pDest++ = color;
+        *pDest++ = Colour;
     vbuf->unlock();
-    mUpdateColors = false;
+    mUpdateColours = false;
 }
  
 const Quaternion& MovableText::getWorldOrientation(void) const
@@ -522,8 +522,8 @@ void MovableText::getRenderOperation(RenderOperation &op)
     {
         if (mNeedUpdate)
             this->_setupGeometry();
-        if (mUpdateColors)
-            this->_updateColors();
+        if (mUpdateColours)
+            this->_updateColours();
         op = mRenderOp;
     }
 }
@@ -539,8 +539,8 @@ void MovableText::_updateRenderQueue(RenderQueue* queue)
     {
         if (mNeedUpdate)
             this->_setupGeometry();
-        if (mUpdateColors)
-            this->_updateColors();
+        if (mUpdateColours)
+            this->_updateColours();
  
         queue->addRenderable(this, mRenderQueueID, OGRE_RENDERABLE_DEFAULT_PRIORITY);
         //queue->addRenderable(this, mRenderQueueID, RENDER_QUEUE_SKIES_LATE);

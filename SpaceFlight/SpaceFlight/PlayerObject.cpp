@@ -8,12 +8,12 @@ PlayerObject::PlayerObject(SceneManager* sceneManager, WindowData* window, Ogre:
 	this->mWindow = window;
 	this->mPlayerID = playerID;
 	this->mNode = sceneNode->createChildSceneNode("player_" + playerID);
-	this->mPosition = Ogre::Vector3(0,0,0);
-	this->mNode->setPosition(this->mPosition);
+	this->mNode->setPosition(Ogre::Vector3(0,0,0));
 	this->mGunCooldownTime = 3.0f;
 	this->mGunMaxFireTime = 5.0f;
 	this->mGunCooldownWait = false;
 	this->mBulletManager = new BulletManager(this, sceneManager);
+	this->isPlayerDead = false;
 }
 
 
@@ -25,8 +25,8 @@ PlayerObject::~PlayerObject(void)
 Ogre::Camera* PlayerObject::LoadCamera(int id)
 {
 	this->mCamera = this->mSceneManager->createCamera("PlayerCam_" + id);
-	this->mCamera->setPosition(Ogre::Vector3(this->mPosition.x,this->mPosition.y + 5,25)); //Need to fix
-	this->mCamera->lookAt(Ogre::Vector3(this->mPosition.x,this->mPosition.y + 5,this->mPosition.z));
+	this->mCamera->setPosition(Ogre::Vector3(this->GetPosition().x,this->GetPosition().y + 5,25)); //Need to fix
+	this->mCamera->lookAt(Ogre::Vector3(this->GetPosition().x,this->GetPosition().y + 5,this->GetPosition().z));
 	this->mCamera->setNearClipDistance(0.01);
 	this->mCamera->setFarClipDistance(this->mWindow->maxViewDistance);
 	this->mCamera->setAspectRatio(Real(this->mWindow->_obj_viewport[id]->getActualWidth()) / Real(this->mWindow->_obj_viewport[id]->getActualHeight()));
@@ -38,22 +38,23 @@ Ogre::Camera* PlayerObject::LoadCamera(int id)
 
 void PlayerObject::Update(Real elapsedTime)
 {
-	this->HandleInput(elapsedTime); //Deal with Input
-	this->mBulletManager->Update(elapsedTime);
-	this->mPosition = this->mNode->getPosition();
+	if(!this->isPlayerDead)
+	{
+		this->HandleInput(elapsedTime); //Deal with Input
+		this->mBulletManager->Update(elapsedTime);
+	}
 }
 
 
 void PlayerObject::SetPosition(Vector3 newPos)
 {
-	this->mPosition = newPos;
-	this->mNode->setPosition(this->mPosition);
+	this->mNode->setPosition(newPos);
 }
 
 
 Vector3 PlayerObject::GetPosition()
 {
-	return this->mPosition;
+	return this->mNode->getPosition();
 }
 
 
@@ -86,14 +87,16 @@ VehicleObject* PlayerObject::GetVehicle()
 
 void PlayerObject::ResetCamera()
 {
-	this->mCameraNode->setPosition(Ogre::Vector3(this->mPosition.x,this->mPosition.y,50));
-	this->mCamera->lookAt(this->mPosition);
+	this->mCameraNode->setPosition(Ogre::Vector3(this->GetPosition().x,this->GetPosition().y,50));
+	this->mCamera->lookAt(this->GetPosition());
 }
 
 
 void PlayerObject::KillPlayer()
 {
+	this->isPlayerDead = true;
 
+	//TODO: EXPLODE
 }
 
 
@@ -130,7 +133,7 @@ void PlayerObject::HandleInput(Real elapsedTime)
 		this->mGunCooldown += elapsedTime;
 		if(!this->mGunCooldownWait)
 		{
-			this->mBulletManager->CreateBullet(this->mPosition, this->mDirection);
+			this->mBulletManager->CreateBullet(this->GetPosition(), this->mDirection);
 			if(this->mGunCooldown >= this->mGunMaxFireTime)
 			{
 				this->mGunCooldownWait = true;
@@ -151,7 +154,7 @@ void PlayerObject::HandleInput(Real elapsedTime)
 	{
 		if(this->mCurrentMissiles > 0)
 		{
-			this->mBulletManager->CreateMissile(this->mPosition, this->mDirection);
+			this->mBulletManager->CreateMissile(this->GetPosition(), this->mDirection);
 			this->mCurrentMissiles -= 1;
 		}
 	}

@@ -21,6 +21,7 @@ void LevelManager::LoadLevel(bool IsMultiplayer, Ogre::SceneNode* sceneNode)
 	this->mNode = sceneNode->createChildSceneNode("level"); //Create the level manager node.
 	int i = this->mWindow->controllingGamepadID;
 	int max = this->mWindow->controllingGamepadID + 1;
+	this->mRaySceneQuery = this->mSceneManager->createRayQuery(Ogre::Ray());
 
 	if(IsMultiplayer)
 	{
@@ -35,20 +36,16 @@ void LevelManager::LoadLevel(bool IsMultiplayer, Ogre::SceneNode* sceneNode)
 			this->mPlayers[i] = new PlayerObject(this->mSceneManager, this->mWindow, this->mNode, i);
 			this->mPlayers[i]->SetVehicle(this->mWindow->playerData[i]->_player_vehicle);
 			this->mPlayers[i]->SetPosition(Ogre::Vector3(0.0f, 0.0f, -100.0f));
+			this->mPlayers[i]->SetHealth(100.0f);
 			this->mWindow->_obj_viewport[i]->setCamera(this->mPlayers[i]->LoadCamera(i));
 			this->mWindow->_obj_viewport[i]->setBackgroundColour(Ogre::ColourValue(0.0f, 0.0f, 0.0f, 0.0f)); //Reset BG Colour
 			this->mStatusText[i] = new Ogre::MovableText("PLAYER_STATUS_" + i, "NullString", "BlueHighway-64", 2.0f, Ogre::ColourValue::White);
 			this->mStatusText[i]->setTextAlignment(Ogre::MovableText::H_CENTER, Ogre::MovableText::V_CENTER);
-			this->mDebugText[i] = new Ogre::MovableText("PLAYER_DEBUG_" + i, "DEBUGTEXT", "BlueHighway-64", 1.0f, Ogre::ColourValue::White);
-			this->mDebugText[i]->setTextAlignment(Ogre::MovableText::H_LEFT, Ogre::MovableText::V_CENTER);
 			this->mPlayerScenes[i] = this->mPlayers[i]->GetSceneNode()->createChildSceneNode("PLAYER_HUD_" + i);
 			this->mPlayerScenes[i]->translate(0.0f, 5.0f, 0.0f);
 			this->mStatusHUD[i] = this->mPlayerScenes[i]->createChildSceneNode("HUD_STATUS_" + i);
-			this->mDebugHUD[i] = this->mPlayerScenes[i]->createChildSceneNode("HUD_DEBUG_" + i);
 			this->mStatusHUD[i]->attachObject(this->mStatusText[i]);
 			this->mStatusHUD[i]->setVisible(false);
-			this->mDebugHUD[i]->attachObject(this->mDebugText[i]);
-			this->mDebugHUD[i]->translate(-((this->mWindow->_obj_viewport[i]->getWidth() / 2.0f)), -(this->mWindow->_obj_viewport[i]->getHeight() / 2.0f), 0.0f);
 		}
 	}
 
@@ -72,7 +69,7 @@ void LevelManager::LoadLevel(bool IsMultiplayer, Ogre::SceneNode* sceneNode)
 		}
 	}
 
-	this->mCloudManager->Load(-1); // Load Volumetric Cloud Manager
+	this->mCloudManager->Load(1000); // Load Volumetric Cloud Manager
 }
 
 
@@ -80,18 +77,22 @@ void LevelManager::UnloadLevel()
 {
 	OGRE_DELETE this->mTerrainGroup;
     OGRE_DELETE this->mTerrainGlobals;
+	this->mSceneManager->destroyQuery(this->mRaySceneQuery);
 }
 
 
 void LevelManager::Update(Ogre::Real elapsedTime)
 {
+	this->mCloudManager->Update(elapsedTime);
+
 	for(int i = 0; i < 4; i++)
 	{
 		if(this->mWindow->activePlayers[i])
 		{
-			Vector3 tmpVector = this->mPlayers[i]->GetPosition();
-			this->mDebugText[i]->setCaption("POSITION X[" + Ogre::StringConverter::toString(tmpVector.x) + "] Y[" + Ogre::StringConverter::toString(tmpVector.y) + "] Z[" + Ogre::StringConverter::toString(tmpVector.z) + "]");
+			if((this->mTerrainGroup->getHeightAtWorldPosition(this->mPlayers[i]->GetPosition())) > this->mPlayers[i]->GetPosition().y)
+				this->mPlayers[i]->SetHealth(0.0f);
 
+			Vector3 tmpVector = this->mPlayers[i]->GetPosition();
 			this->mPlayers[i]->Update(elapsedTime);
 
 			if(this->mPlayers[i]->GetHealth() <= 0.0f)
@@ -264,5 +265,7 @@ Ogre::SceneNode* LevelManager::GetLevelNode()
 {
 	if(this->mNode != nullptr)
 		return this->mNode;
+
+	return nullptr;
 }
 #pragma endregion

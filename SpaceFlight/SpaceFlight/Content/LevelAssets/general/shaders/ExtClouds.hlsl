@@ -37,13 +37,13 @@ void main_fp(
     float  iDistance : TEXCOORD4,
 	
 	// OUT 
-	out float4 oColor		: COLOR,
+	out float4 oColour		: Colour,
 	
 	// UNIFORM
 	uniform float     uInterpolation,
 	uniform float3    uSunDirection,
-	uniform float3    uAmbientColor,
-	uniform float3    uSunColor,
+	uniform float3    uAmbientColour,
+	uniform float3    uSunColour,
 	uniform float4    uLightResponse,
 	uniform float4    uAmbientFactors,
 	uniform sampler3D uDensity0 : register(s0),
@@ -56,7 +56,7 @@ void main_fp(
 	float3 Density0 = tex3D(uDensity0, Final3DCoord);
 	float3 Density1 = tex3D(uDensity1, Final3DCoord);
 	float3 Density  = Density0*(1-uInterpolation) + Density1*uInterpolation;
-	float3 finalcolor = float3(0,0,0);
+	float3 finalColour = float3(0,0,0);
 	float  Opacity    = 0;
 
 	if (Density.x > 0)
@@ -66,9 +66,9 @@ void main_fp(
 		float Beta = c2*uLightResponse.y*(0.5f+2.5f*saturate(1-2*uSunDirection.y)*Density.y);
 		float sunaccumulation = max(0.2, saturate(Beta+Density.y*uLightResponse.x+pow(iDistance,1.5)*uLightResponse.w));
 		float ambientaccumulation = saturate(uAmbientFactors.x + uAmbientFactors.y*i3DCoord.z + uAmbientFactors.z*pow(i3DCoord.z,2) + uAmbientFactors.w*pow(i3DCoord.z,3))*uLightResponse.z;
-		finalcolor = uAmbientColor*ambientaccumulation + uSunColor*sunaccumulation;
+		finalColour = uAmbientColour*ambientaccumulation + uSunColour*sunaccumulation;
 		Opacity = (1 - exp(-Density.x*(7.5-6.5*i3DCoord.z)))*iOpacity;
 	}
 	
-    oColor = float4(finalcolor, Opacity);
+    oColour = float4(finalColour, Opacity);
 }

@@ -20,6 +20,7 @@ public:
 protected:
 	void HandleInput(Ogre::Real elapsedTime);
 	int mPlayerID;
+	bool isPlayerDead;
 
 	//Scene Nodes
 	Ogre::SceneNode* mNode;
@@ -29,7 +30,6 @@ protected:
 	WindowData* mWindow;
 	Ogre::SceneManager* mSceneManager;
 	Ogre::Camera* mCamera;
-	Ogre::Vector3 mPosition;
 	Ogre::Vector3 mDirection;
 	Ogre::Real mHealth;
 	VehicleObject* mVehicle;

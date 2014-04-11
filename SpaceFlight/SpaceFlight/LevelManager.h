@@ -32,14 +32,12 @@ protected:
 	PlayerObject* mPlayers[4];
 	Ogre::Light* mLevelLight;
 	VolCloudManager* mCloudManager;
+	Ogre::RaySceneQuery* mRaySceneQuery;
 
 	Ogre::MovableText* mStatusText[4];
-	Ogre::MovableText* mDebugText[4];
-	Ogre::SceneNode* mPlayerScenes[4];
-
 	Ogre::SceneNode* mStatusHUD[4];
-	Ogre::SceneNode* mDebugHUD[4];
 
+	Ogre::SceneNode* mPlayerScenes[4];
 	void GenerateTerrain(void);
 };
 

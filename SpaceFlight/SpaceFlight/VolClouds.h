@@ -1,6 +1,7 @@
 #ifndef VOLCLOUD_H
 #define VOLCLOUD_H
 
+#include "GeometryManager.h"
 
 class VolClouds
 {
@@ -25,11 +26,11 @@ public:
 	inline void setSunDirection(const Ogre::Vector3& SunDirection){mSunDirection = SunDirection;}
 	inline const Ogre::Vector3& getSunDirection() const{return mSunDirection;}
 
-	void setSunColor(const Ogre::Vector3& SunColor);
-	inline const Ogre::Vector3& getSunColor() const {return mSunColor;}
+	void setSunColour(const Ogre::Vector3& SunColour);
+	inline const Ogre::Vector3& getSunColour() const {return mSunColour;}
 
-	void setAmbientColor(const Ogre::Vector3& AmbientColor);
-	inline const Ogre::Vector3& getAmbientColor() const {return mAmbientColor;}
+	void setAmbientColour(const Ogre::Vector3& AmbientColour);
+	inline const Ogre::Vector3& getAmbientColour() const {return mAmbientColour;}
 
 	void setLightResponse(const Ogre::Vector4& LightResponse);
 	inline const Ogre::Vector4& getLightResponse() const {return mLightResponse;}
@@ -47,19 +48,21 @@ public:
 	inline const Ogre::Real& getNoiseScale() const {return mNoiseScale;}
 
 	void setWheater(const float& Humidity, const float& AverageCloudsSize, const bool& DelayedResponse);
-	inline const Ogre::Vector2& getWheater() const {return mWheater;}
+	inline const Ogre::Vector2& getWheater() const {return mWeather;}
 
 	void setVisible(const bool& visible);
-	inline const bool& isVisible() const {return mVisible;}
+	inline const bool& isVisible() const { return mVisible;}
+
+	inline Ogre::SceneManager* getSceneManager() {return mSceneManager;}
 private:
 	bool mCreated;
 	Ogre::Radian mWindDirection;
 	float mWindSpeed;
-	Ogre::Vector2 mWheater;
+	Ogre::Vector2 mWeather;
 	bool mDelayedResponse;
 	Ogre::Vector3 mSunDirection;
-	Ogre::Vector3 mSunColor;
-	Ogre::Vector3 mAmbientColor;
+	Ogre::Vector3 mSunColour;
+	Ogre::Vector3 mAmbientColour;
 	Ogre::Vector4 mLightResponse;
 	Ogre::Vector4 mAmbientFactors;
 
@@ -70,6 +73,7 @@ private:
 
 	Ogre::SceneManager* mSceneManager;
 	Ogre::MaterialPtr mVolCloudsMaterial;
+	GeometryManager* mGeometryManager;
 };
 
 #endif // VOLCLOUD_H

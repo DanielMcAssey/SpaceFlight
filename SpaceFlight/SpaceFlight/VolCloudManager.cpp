@@ -2,10 +2,13 @@
 #include "VolCloudManager.h"
 
 
-VolCloudManager::VolCloudManager(Ogre::SceneManager *_sceneManager)
+VolCloudManager::VolCloudManager(Ogre::SceneManager* _sceneManager)
 {
+	this->mHeight = Ogre::Vector2(-1, -1);
+	this->mWindSpeed = 800.0f;
+	this->mCreated = false;
 	this->mSceneManager = _sceneManager;
-	this->mVolClouds = new VolClouds(this->mSceneManager);
+	this->mVolClouds = new VolClouds(_sceneManager);
 }
 
 

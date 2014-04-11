@@ -11,6 +11,8 @@
 #include <OgreCamera.h>
 #include <OgreEntity.h>
 #include <OgreLogManager.h>
+#include <OgreMeshManager.h>
+#include <OgreSubMesh.h>
 #include <OgreRoot.h>
 #include <OgreViewport.h>
 #include <OgreSceneManager.h>
