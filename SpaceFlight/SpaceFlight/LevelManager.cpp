@@ -38,9 +38,17 @@ void LevelManager::LoadLevel(bool IsMultiplayer, Ogre::SceneNode* sceneNode)
 			this->mWindow->_obj_viewport[i]->setCamera(this->mPlayers[i]->LoadCamera(i));
 			this->mWindow->_obj_viewport[i]->setBackgroundColour(Ogre::ColourValue(0.0f, 0.0f, 0.0f, 0.0f)); //Reset BG Colour
 			this->mStatusText[i] = new Ogre::MovableText("PLAYER_STATUS_" + i, "NullString", "BlueHighway-64", 2.0f, Ogre::ColourValue::White);
-			this->mPlayerScenes[i] = this->mNode->createChildSceneNode("PLAYER_LEVEL_" + i);
-			this->mPlayerScenes[i]->setPosition(Ogre::Vector3(i * 1000,-20,-20));
-			this->mPlayerScenes[i]->attachObject(this->mStatusText[i]);
+			this->mStatusText[i]->setTextAlignment(Ogre::MovableText::H_CENTER, Ogre::MovableText::V_CENTER);
+			this->mDebugText[i] = new Ogre::MovableText("PLAYER_DEBUG_" + i, "DEBUGTEXT", "BlueHighway-64", 1.0f, Ogre::ColourValue::White);
+			this->mDebugText[i]->setTextAlignment(Ogre::MovableText::H_LEFT, Ogre::MovableText::V_CENTER);
+			this->mPlayerScenes[i] = this->mPlayers[i]->GetSceneNode()->createChildSceneNode("PLAYER_HUD_" + i);
+			this->mPlayerScenes[i]->translate(0.0f, 5.0f, 0.0f);
+			this->mStatusHUD[i] = this->mPlayerScenes[i]->createChildSceneNode("HUD_STATUS_" + i);
+			this->mDebugHUD[i] = this->mPlayerScenes[i]->createChildSceneNode("HUD_DEBUG_" + i);
+			this->mStatusHUD[i]->attachObject(this->mStatusText[i]);
+			this->mStatusHUD[i]->setVisible(false);
+			this->mDebugHUD[i]->attachObject(this->mDebugText[i]);
+			this->mDebugHUD[i]->translate(-((this->mWindow->_obj_viewport[i]->getWidth() / 2.0f)), -(this->mWindow->_obj_viewport[i]->getHeight() / 2.0f), 0.0f);
 		}
 	}
 
@@ -81,14 +89,17 @@ void LevelManager::Update(Ogre::Real elapsedTime)
 	{
 		if(this->mWindow->activePlayers[i])
 		{
+			Vector3 tmpVector = this->mPlayers[i]->GetPosition();
+			this->mDebugText[i]->setCaption("POSITION X[" + Ogre::StringConverter::toString(tmpVector.x) + "] Y[" + Ogre::StringConverter::toString(tmpVector.y) + "] Z[" + Ogre::StringConverter::toString(tmpVector.z) + "]");
+
 			this->mPlayers[i]->Update(elapsedTime);
 
 			if(this->mPlayers[i]->GetHealth() <= 0.0f)
 			{
 				this->mPlayers[i]->KillPlayer();
-
-
-
+				this->mStatusText[i]->setCaption("GAME OVER");
+				this->mStatusHUD[i]->setVisible(true);
+				this->mWindow->_obj_viewport[i]->setBackgroundColour(Ogre::ColourValue::Black);
 			}
 		}
 	}

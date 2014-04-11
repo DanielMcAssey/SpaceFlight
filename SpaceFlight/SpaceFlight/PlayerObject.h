@@ -16,6 +16,7 @@ public:
 	VehicleObject* GetVehicle();
 	void ResetCamera(void);
 	void KillPlayer(void);
+	Ogre::SceneNode* GetSceneNode(void);
 protected:
 	void HandleInput(Ogre::Real elapsedTime);
 	int mPlayerID;

@@ -40,6 +40,7 @@ void PlayerObject::Update(Real elapsedTime)
 {
 	this->HandleInput(elapsedTime); //Deal with Input
 	this->mBulletManager->Update(elapsedTime);
+	this->mPosition = this->mNode->getPosition();
 }
 
 
@@ -93,6 +94,13 @@ void PlayerObject::ResetCamera()
 void PlayerObject::KillPlayer()
 {
 
+}
+
+
+Ogre::SceneNode* PlayerObject::GetSceneNode(void)
+{
+	if(this->mNode != nullptr)
+		return this->mNode;
 }
 
 
