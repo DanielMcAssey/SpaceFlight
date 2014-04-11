@@ -25,6 +25,10 @@ protected:
 	Ogre::SceneNode* menuNode;
 
 	Ogre::MovableText* startupMsg;
+	Ogre::MovableText* menuText;
+
+	Ogre::SceneNode* startupTextNode;
+	Ogre::SceneNode* menuTextNode;
 
 	bool startPressed;
 	int menuIndex;

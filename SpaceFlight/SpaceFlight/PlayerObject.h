@@ -14,7 +14,8 @@ public:
 	Ogre::Real GetHealth();
 	void SetVehicle(VehicleObject* vehicle);
 	VehicleObject* GetVehicle();
-	void ResetCamera();
+	void ResetCamera(void);
+	void KillPlayer(void);
 protected:
 	void HandleInput(Ogre::Real elapsedTime);
 	int mPlayerID;

@@ -37,6 +37,10 @@ void LevelManager::LoadLevel(bool IsMultiplayer, Ogre::SceneNode* sceneNode)
 			this->mPlayers[i]->SetPosition(Ogre::Vector3(0.0f, 0.0f, -100.0f));
 			this->mWindow->_obj_viewport[i]->setCamera(this->mPlayers[i]->LoadCamera(i));
 			this->mWindow->_obj_viewport[i]->setBackgroundColour(Ogre::ColourValue(0.0f, 0.0f, 0.0f, 0.0f)); //Reset BG Colour
+			this->mStatusText[i] = new Ogre::MovableText("PLAYER_STATUS_" + i, "NullString", "BlueHighway-64", 2.0f, Ogre::ColourValue::White);
+			this->mPlayerScenes[i] = this->mNode->createChildSceneNode("PLAYER_LEVEL_" + i);
+			this->mPlayerScenes[i]->setPosition(Ogre::Vector3(i * 1000,-20,-20));
+			this->mPlayerScenes[i]->attachObject(this->mStatusText[i]);
 		}
 	}
 
@@ -52,20 +56,15 @@ void LevelManager::LoadLevel(bool IsMultiplayer, Ogre::SceneNode* sceneNode)
 	this->GenerateTerrain();
 	this->mSceneManager->setSkyDome(true, "Examples/CloudySky", 64, 8);
 
-	//Test Entity
-	Entity* tmpEntity = this->mSceneManager->createEntity("Sphere", SceneManager::PT_SPHERE);
-	tmpEntity->setMaterialName("Examples/BumpyMetal");
-	this->mNode->attachObject(tmpEntity);
-
 	for(int i = 0; i < 4; i++)
 	{
 		if(this->mWindow->activePlayers[i])
 		{
-			this->mPlayers[i]->SetPosition(Vector3(50.0f * i, 100.0f, 0.0f));
+			this->mPlayers[i]->SetPosition(Vector3(50.0f * i, 600.0f, 0.0f));
 		}
 	}
 
-	this->mCloudManager->Load(-1);
+	this->mCloudManager->Load(-1); // Load Volumetric Cloud Manager
 }
 
 
@@ -86,7 +85,10 @@ void LevelManager::Update(Ogre::Real elapsedTime)
 
 			if(this->mPlayers[i]->GetHealth() <= 0.0f)
 			{
-				//Kill
+				this->mPlayers[i]->KillPlayer();
+
+
+
 			}
 		}
 	}
@@ -111,8 +113,8 @@ void LevelManager::GenerateTerrain(void)
 	this->mTerrainGroup->setOrigin(Ogre::Vector3::ZERO);
 	this->ConfigTerrainDefaults(this->mLevelLight);
 
-	for(long x = 0; x < 0; ++x)
-		for(long y = 0; y <= 0; ++y)
+	for(long x = 0; x <= 1; ++x)
+		for(long y = 0; y <= 1; ++y)
 			this->DefineTerrain(x, y);
 
 	this->mTerrainGroup->loadAllTerrains(true);
@@ -133,7 +135,7 @@ void LevelManager::GenerateTerrain(void)
 
 void LevelManager::GetTerrainImage(bool flipX, bool flipY, Ogre::Image& img)
 {
-	img.load("terrain.png", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+	img.load("Terrain.png", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 	if (flipX)
 		img.flipAroundY();
 	if (flipY)
@@ -144,16 +146,16 @@ void LevelManager::GetTerrainImage(bool flipX, bool flipY, Ogre::Image& img)
 void LevelManager::DefineTerrain(long x, long y)
 {
 	Ogre::String filename = mTerrainGroup->generateFilename(x, y);
-    if (Ogre::ResourceGroupManager::getSingleton().resourceExists(mTerrainGroup->getResourceGroup(), filename))
+    if (Ogre::ResourceGroupManager::getSingleton().resourceExists(this->mTerrainGroup->getResourceGroup(), filename))
     {
-        mTerrainGroup->defineTerrain(x, y);
+        this->mTerrainGroup->defineTerrain(x, y);
     }
     else
     {
         Ogre::Image img;
         this->GetTerrainImage(x % 2 != 0, y % 2 != 0, img);
-        mTerrainGroup->defineTerrain(x, y, &img);
-        mTerrainsImported = true;
+        this->mTerrainGroup->defineTerrain(x, y, &img);
+        this->mTerrainsImported = true;
     }
 }
 
