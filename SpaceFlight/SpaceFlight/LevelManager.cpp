@@ -6,6 +6,7 @@ LevelManager::LevelManager(WindowData* window, Ogre::SceneManager* sceneManager)
 {
 	this->mWindow = window;
 	this->mSceneManager = sceneManager;
+	this->mCloudManager = new VolCloudManager(this->mSceneManager);
 }
 
 
@@ -63,6 +64,8 @@ void LevelManager::LoadLevel(bool IsMultiplayer, Ogre::SceneNode* sceneNode)
 			this->mPlayers[i]->SetPosition(Vector3(50.0f * i, 100.0f, 0.0f));
 		}
 	}
+
+	this->mCloudManager->Load(-1);
 }
 
 
@@ -130,7 +133,7 @@ void LevelManager::GenerateTerrain(void)
 
 void LevelManager::GetTerrainImage(bool flipX, bool flipY, Ogre::Image& img)
 {
-	img.load("Terrain.png", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+	img.load("terrain.png", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 	if (flipX)
 		img.flipAroundY();
 	if (flipY)

@@ -76,7 +76,7 @@ bool App::internAppSetup(void)
 	}
 
 	if(this->_obj_window._obj_root->getRenderSystem()->getCapabilities()->hasCapability(Ogre::RSC_INFINITE_FAR_PLANE))
-		this->_obj_window.maxViewDistance = 30000.0f;
+		this->_obj_window.maxViewDistance = 0.0f;
 	else
 		this->_obj_window.maxViewDistance = 30000.0f;
 

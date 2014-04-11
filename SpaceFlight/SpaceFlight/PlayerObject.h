@@ -28,6 +28,7 @@ protected:
 	Ogre::SceneManager* mSceneManager;
 	Ogre::Camera* mCamera;
 	Ogre::Vector3 mPosition;
+	Ogre::Vector3 mDirection;
 	Ogre::Real mHealth;
 	VehicleObject* mVehicle;
 
@@ -35,10 +36,10 @@ protected:
 	Ogre::Real mGunCooldown;
 	Ogre::Real mGunCooldownTime;
 	Ogre::Real mGunMaxFireTime;
+	BulletManager* mBulletManager;
 
 	int mMaxMissiles;
 	int mCurrentMissiles;
-
 };
 
 #endif // PLAYEROBJECT_H

@@ -1,8 +1,3 @@
-// stdafx.h : include file for standard system include files,
-// or project specific include files that are used frequently, but
-// are changed infrequently
-//
-
 #pragma once
 
 #include "targetver.h"
@@ -41,6 +36,7 @@
 //Objects
 #include "HUD.h"
 #include "GameObject.h"
+#include "BulletManager.h"
 #include "VehicleObject.h"
 #include "PlayerObject.h"
 //Objects

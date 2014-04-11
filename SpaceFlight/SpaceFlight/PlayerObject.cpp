@@ -13,6 +13,7 @@ PlayerObject::PlayerObject(SceneManager* sceneManager, WindowData* window, Ogre:
 	this->mGunCooldownTime = 3.0f;
 	this->mGunMaxFireTime = 5.0f;
 	this->mGunCooldownWait = false;
+	this->mBulletManager = new BulletManager(this, sceneManager);
 }
 
 
@@ -38,8 +39,7 @@ Ogre::Camera* PlayerObject::LoadCamera(int id)
 void PlayerObject::Update(Real elapsedTime)
 {
 	this->HandleInput(elapsedTime); //Deal with Input
-
-	//Movement Stuff
+	this->mBulletManager->Update(elapsedTime);
 }
 
 
@@ -92,23 +92,21 @@ void PlayerObject::ResetCamera()
 
 void PlayerObject::HandleInput(Real elapsedTime)
 {
-	Vector3 _Direction = this->mNode->_getDerivedOrientation() * Vector3::NEGATIVE_UNIT_Z;
+	this->mDirection = this->mNode->_getDerivedOrientation() * Vector3::NEGATIVE_UNIT_Z;
 	Real _Speed = this->mVehicle->GetStats()->Speed * 0.3f;
 
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger != 0.0f)
-		this->mNode->translate((_Direction * (this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger * _Speed)) * elapsedTime); //Need to fix
+		this->mNode->translate((this->mDirection * (this->mWindow->_obj_input->GetState(this->mPlayerID).RTrigger * (_Speed * 1.5))) * elapsedTime); //Accelerate
+	else if(this->mWindow->_obj_input->GetState(this->mPlayerID).LTrigger != 0.0f)
+		this->mNode->translate((this->mDirection * (_Speed / 2)) * elapsedTime); //Brake
 	else
-		this->mNode->translate((_Direction * _Speed) * elapsedTime);
+		this->mNode->translate((this->mDirection * _Speed) * elapsedTime); //Normal Speed
 
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.X != 0.0f)
-	{
 		this->mNode->roll(Ogre::Degree(-this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.X  * elapsedTime * (this->mVehicle->GetStats()->Handling / 2000)), Ogre::Node::TS_LOCAL);
-	}
 
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.Y != 0.0f)
-	{
 		this->mNode->pitch(Ogre::Degree(-this->mWindow->_obj_input->GetState(this->mPlayerID).LStick.Y  * elapsedTime * (this->mVehicle->GetStats()->Handling / 2000)), Ogre::Node::TS_LOCAL);
-	}
 
 	if(this->mWindow->_obj_input->GetState(this->mPlayerID).Buttons.LShoulder == false && this->mGunCooldownWait == false)
 		this->mGunCooldown = 0.0f;
@@ -118,10 +116,7 @@ void PlayerObject::HandleInput(Real elapsedTime)
 		this->mGunCooldown += elapsedTime;
 		if(!this->mGunCooldownWait)
 		{
-			/////////////
-			//FIRE WEAPON
-			/////////////
-
+			this->mBulletManager->CreateBullet(this->mPosition, this->mDirection);
 			if(this->mGunCooldown >= this->mGunMaxFireTime)
 			{
 				this->mGunCooldownWait = true;
@@ -142,12 +137,9 @@ void PlayerObject::HandleInput(Real elapsedTime)
 	{
 		if(this->mCurrentMissiles > 0)
 		{
-			//////////////
-			//FIRE MISSILE
-			//////////////
-
-
+			this->mBulletManager->CreateMissile(this->mPosition, this->mDirection);
 			this->mCurrentMissiles -= 1;
 		}
 	}
 }
+

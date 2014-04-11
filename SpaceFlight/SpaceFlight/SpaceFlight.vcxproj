@@ -90,6 +90,7 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="BaseCamera.h" />
     <ClInclude Include="BaseScreen.h" />
+    <ClInclude Include="BulletManager.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="DogFightingScreen.h" />
     <ClInclude Include="HUD.h" />
@@ -109,10 +110,13 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="VehicleObject.h" />
     <ClInclude Include="VehicleSelect.h" />
+    <ClInclude Include="VolClouds.h" />
+    <ClInclude Include="VolCloudManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="BaseCamera.cpp" />
+    <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="DogFightingScreen.cpp" />
     <ClCompile Include="HUD.cpp" />
@@ -133,6 +137,8 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="VehicleObject.cpp" />
     <ClCompile Include="VehicleSelect.cpp" />
+    <ClCompile Include="VolClouds.cpp" />
+    <ClCompile Include="VolCloudManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

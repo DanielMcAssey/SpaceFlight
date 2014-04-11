@@ -3,6 +3,7 @@
 
 #include <OGRE\Terrain\OgreTerrain.h>
 #include <OGRE\Terrain\OgreTerrainGroup.h>
+#include "VolCloudManager.h"
 
 class LevelManager
 {
@@ -31,6 +32,7 @@ protected:
 	Ogre::SceneNode* mNode;
 	PlayerObject* mPlayers[4];
 	Ogre::Light* mLevelLight;
+	VolCloudManager* mCloudManager;
 };
 
 #endif // LEVELMANAGER_H
