@@ -34,7 +34,11 @@ protected:
 	VolCloudManager* mCloudManager;
 
 	Ogre::MovableText* mStatusText[4];
+	Ogre::MovableText* mDebugText[4];
 	Ogre::SceneNode* mPlayerScenes[4];
+
+	Ogre::SceneNode* mStatusHUD[4];
+	Ogre::SceneNode* mDebugHUD[4];
 
 	void GenerateTerrain(void);
 };

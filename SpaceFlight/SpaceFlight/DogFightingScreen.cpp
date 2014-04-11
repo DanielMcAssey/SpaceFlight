@@ -29,8 +29,6 @@ void DogFightingScreen::Load()
 	{
 		throw new Exception(Ogre::Exception::ERR_RT_ASSERTION_FAILED, "LevelManager was not created, no level could be loaded.", "LevelManager");
 	}
-
-
 }
 
 
