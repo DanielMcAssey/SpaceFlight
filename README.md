@@ -7,11 +7,12 @@ This game will automatically detect extra controllers and add the appopriate amo
 
 Controls
 ================
-RT/LT = Thrusters/Brakes
-LeftStick = Pitch/Bank
-RightStick = Rotate Camera
-LB = Cannon
-RB = Missiles/Special
+- RT/LT = Thrusters/Brakes
+- LeftStick = Pitch/Bank
+- RightStick = Rotate Camera
+- LB = Cannon
+- RB = Missiles/Special
+
 
 
 
